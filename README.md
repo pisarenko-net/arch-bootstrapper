@@ -22,3 +22,7 @@ $ curl -L git.io/bootstrap_lv_nuc_sergey | sh
 ```
 $ curl -L git.io/install_ch_nuc_sergey | sh
 ```
+
+## VMs
+
+VMs are managed with Vagrant.
