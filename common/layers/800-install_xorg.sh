@@ -2,7 +2,7 @@
 
 # Install graphical environment and basic tools to be available on each machine.
 
-# run from bootstrapped machine: $ curl -L git.io/install_xorg_sergey | sh
+# run and execute from bootstrapped script (not to be invoked directly): $ curl -L git.io/install_xorg_sergey | sh
 # (created with: $ curl -i https://git.io -F "url=https://raw.githubusercontent.com/pisarenko-net/arch-bootstrapper/main/common/layers/800-install_xorg.sh" -F "code=install_xorg_sergey")
 
 # install desktop environment
