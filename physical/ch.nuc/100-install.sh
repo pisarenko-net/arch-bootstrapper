@@ -84,15 +84,15 @@ echo '==> Installing media tools'
 echo '==> Installing Arduino tools'
 /usr/bin/pacman -S --noconfirm arduino jdk8-openjdk arduino-avr-core
 
-echo '==> Updating VM templates'    
-$AS /usr/local/bin/vm_refresh_packer        
+#echo '==> Updating VM templates'    
+#$AS /usr/local/bin/vm_refresh_packer        
 
-echo '==> Building and enabling VMs'        
-for vm in ${INSTALL_VMS}        
-do        
-        echo "==> Building VM ${vm}"        
-        /usr/local/bin/vm_rebuild_install ${vm}                 
-done                                        
+#echo '==> Building and enabling VMs'        
+#for vm in ${INSTALL_VMS}        
+#do        
+#        echo "==> Building VM ${vm}"        
+#        /usr/local/bin/vm_rebuild_install ${vm}                 
+#done                                        
 
 echo '==> Committing changes to vagrant/packer repo'        
 cd /home/${USER}/arch-packer-vagrant        
