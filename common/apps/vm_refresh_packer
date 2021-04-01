@@ -1,0 +1,27 @@
+#!/bin/sh
+
+VAGRANT_REPO_DIR="/home/sergey/arch-packer-vagrant"
+
+PACKER_DIR="${VAGRANT_REPO_DIR}/packer"
+VMS_DIR="${VAGRANT_REPO_DIR}/vagrant/vms"
+BOX_DEFINITION="${PACKER_DIR}/arch-base.json"
+
+THIS_MONTH_DOTS=`date +%Y.%m.01`
+THIS_MONTH_DASHES=`date +%Y-%m-01`
+THIS_MONTH_VERSION=`date +%y.%m`
+
+echo "==> Setting Arch version to ${THIS_MONTH_DOTS}"
+sed -i "s/[0-9]\{4\}.[0-9]\{2\}.01/${THIS_MONTH_DOTS}/g" ${BOX_DEFINITION}
+
+echo "==> Building new base packer box"
+cd ${PACKER_DIR}
+/usr/bin/packer build -force ${BOX_DEFINITION}
+
+echo "==> Importing new base box into vagrant"
+/usr/bin/vagrant box add "${PACKER_DIR}/output/arch_vagrant_base.box" --name arch-base-${THIS_MONTH_DASHES} --force
+
+echo "==> Upgrading Vagrant templates to the latest base box version"
+for file in $(find ${VMS_DIR} -name 'Vagrantfile'); do 
+    sed -i "s/[0-9]\{4\}-[0-9]\{2\}-01/${THIS_MONTH_DASHES}/g" $file
+    sed -i "s/ [0-9]\{2\}\.[0-9]\{2\}\"/ ${THIS_MONTH_VERSION}\"/g" $file
+done

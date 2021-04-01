@@ -1,0 +1,59 @@
+#!/bin/sh
+
+USER="sergey"
+AS="/usr/bin/sudo -u ${USER}"
+
+VAGRANT_REPO_DIR="/home/${USER}/arch-packer-vagrant"
+VMS_DIR="${VAGRANT_REPO_DIR}/vagrant/vms"
+
+VM=$1
+
+START_UP_SCRIPT_PATH="/usr/local/bin/vm_${VM}_start"
+STOP_SCRIPT_PATH="/usr/local/bin/vm_${VM}_stop"
+
+INIT_SERVICE_NAME="vm_${VM}.service"
+INIT_FILE_PATH="/etc/systemd/system/${INIT_SERVICE_NAME}"
+
+echo "==> Destroying existing VM"
+cd "${VMS_DIR}/${VM}"
+$AS /usr/bin/vagrant destroy -f
+
+echo "==> Building VM"
+$AS /usr/bin/vagrant up
+
+echo "==> Creating VM start-up script"
+/usr/bin/cat <<-EOF > "${START_UP_SCRIPT_PATH}"
+#!/bin/sh
+AS="/usr/bin/sudo -u ${USER}"
+cd "${VMS_DIR}/${VM}"
+$AS /usr/bin/vagrant up
+EOF
+/usr/bin/chmod +x ${START_UP_SCRIPT_PATH}
+
+echo "==> Creating VM stop script"
+/usr/bin/cat <<-EOF > "${STOP_SCRIPT_PATH}"
+#!/bin/sh
+AS="/usr/bin/sudo -u ${USER}"
+cd "${VMS_DIR}/${VM}"
+$AS /usr/bin/vagrant halt
+EOF
+/usr/bin/chmod +x ${STOP_SCRIPT_PATH}
+
+echo "==> Enabling VM on boot"
+/usr/bin/cat <<-EOF > "${INIT_FILE_PATH}"
+[Unit]
+Description=VM ${VM}
+Requires=network.target
+After=network.target
+
+[Service]
+ExecStart=${START_UP_SCRIPT_PATH}
+ExecStop=${STOP_SCRIPT_PATH}
+RemainAfterExit=yes
+Type=oneshot
+
+[Install]
+WantedBy=multi-user.target
+EOF
+/usr/bin/systemctl enable ${INIT_SERVICE_NAME}
+
