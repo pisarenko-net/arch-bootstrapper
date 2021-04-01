@@ -18,7 +18,7 @@ Common scripts are placed in common/layers folder. For example, the bootstrap is
 
 NUC.ch Last Installed (updated automatically): **1999-01-01**.
 
-Bootstrap:
+Bootstrap (from Arch installer):
 ```
 $ curl -L git.io/bootstrap_ch_nuc_sergey | sh
 ```
@@ -32,7 +32,7 @@ Install (requires: config decryption key in `private.key`, root):
 
 NUC.lv Last Installed (updated automatically): **1999-01-01**.
 
-Bootstrap:
+Bootstrap (from Arch installer):
 ```
 $ curl -L git.io/bootstrap_lv_nuc_sergey | sh
 ```
