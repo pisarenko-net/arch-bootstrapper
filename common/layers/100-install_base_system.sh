@@ -2,8 +2,8 @@
 
 # Install base Arch Linux system. Networking configuration is up to each machine definition.
 
-# run and execute from specific configuration scripts: $ curl -L git.io/apfel_bootstrap | sh
-# (created with: $ curl -i https://git.io -F "url=https://raw.githubusercontent.com/pisarenko-net/arch-bootstrap-scripts/master/common/bootstrap.sh" -F "code=apfel_bootstrap")
+# run and execute from configuration scripts (not to be invoked directly): $ curl -L git.io/install_base_system_sergey | sh
+# (created with: $ curl -i https://git.io -F "url=https://raw.githubusercontent.com/pisarenko-net/arch-bootstrapper/main/common/layers/100-install_base_system.sh" -F "code=install_base_system_sergey")
 
 echo '==> Generating system configuration script'
 /usr/bin/cat <<-EOF >> "${TARGET_DIR}${CONFIG_SCRIPT}"
