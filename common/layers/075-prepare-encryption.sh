@@ -2,7 +2,7 @@
 
 # Prepare the base installation for encrypted root partition.
 
-# run and execute from specific configuration scripts: $ curl -L git.io/prepare_encryption_sergey | sh
+# run and execute from configuration scripts (not to be invoked directly): $ curl -L git.io/prepare_encryption_sergey | sh
 # (created with: $ curl -i https://git.io -F "url=https://raw.githubusercontent.com/pisarenko-net/arch-bootstrapper/main/common/layers/075-prepare-encryption.sh" -F "code=prepare_encryption_sergey")
 
 echo '==> Altering default GRUB configuration (for encryption)'
