@@ -23,7 +23,7 @@ Bootstrap:
 $ curl -L git.io/bootstrap_ch_nuc_sergey | sh
 ```
 
-Install (have config decryption key in `private.key`, run under root):
+Install (requires: config decryption key in `private.key`, root):
 ```
 # curl -L git.io/install_ch_nuc_sergey | sh
 ```
@@ -37,7 +37,7 @@ Bootstrap:
 $ curl -L git.io/bootstrap_lv_nuc_sergey | sh
 ```
 
-Install (have config decryption key in `private.key`, run under root):
+Install (requires: config decryption key in `private.key`, root):
 ```
 $ curl -L git.io/install_ch_nuc_sergey | sh
 ```
