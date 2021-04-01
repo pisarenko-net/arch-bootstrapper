@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# run and execute after dropping into arch installer: $ curl -L git.io/apfel_nuc | sh
-# (created with: $ curl -i https://git.io -F "url=https://raw.githubusercontent.com/pisarenko-net/arch-bootstrap-scripts/master/nuc/bootstrap.sh" -F "code=apfel_nuc")
+# run and execute after dropping into arch installer: $ curl -L git.io/bootstrap_ch_nuc_sergey | sh
+# (created with: $ curl -i https://git.io -F "url=https://raw.githubusercontent.com/pisarenko-net/arch-bootstrapper/main/physical/ch.nuc/000-bootstrap.sh" -F "code=bootstrap_ch_nuc_sergey")
 
 export DISK='/dev/nvme0n1'
 
