@@ -2,8 +2,8 @@
 
 # Prepare for base installation. 
 
-# run and execute from specific configuration scripts: $ curl -L git.io/apfel_bootstrap | sh
-# (created with: $ curl -i https://git.io -F "url=https://raw.githubusercontent.com/pisarenko-net/arch-bootstrap-scripts/master/common/bootstrap.sh" -F "code=apfel_bootstrap")
+# run and execute from specific configuration scripts: $ curl -L git.io/prepare_base_system_sergey | sh
+# (created with: $ curl -i https://git.io -F "url=https://raw.githubusercontent.com/pisarenko-net/arch-bootstrapper/main/common/layers/050-prepare_base_system.sh" -F "code=prepare_base_system_sergey")
 
 echo "==> Setting local mirror"
 /usr/bin/curl -s -L "$MIRRORLIST" |  sed 's/^#Server/Server/' > /etc/pacman.d/mirrorlist
