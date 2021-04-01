@@ -2,8 +2,8 @@
 
 # Partition system drive for Arch Linux installation on a physical host with encryption.
 
-# run and execute from specific configuration scripts: $ curl -L git.io/apfel_bootstrap | sh
-# (created with: $ curl -i https://git.io -F "url=https://raw.githubusercontent.com/pisarenko-net/arch-bootstrap-scripts/master/common/bootstrap.sh" -F "code=apfel_bootstrap")
+# run and execute from specific configuration scripts: $ curl -L git.io/partition_drive_sergey | sh
+# (created with: $ curl -i https://git.io -F "url=https://raw.githubusercontent.com/pisarenko-net/arch-bootstrapper/main/common/layers/000-partition_physical.sh" -F "code=partition_drive_sergey")
 
 echo "==> Create GPT partition table on ${DISK}"
 /usr/bin/sgdisk -og ${DISK}
