@@ -2,7 +2,7 @@
 
 # Install base CLI layer: tools and configs to be present on each machine.
 
-# run from bootstrapped machine: $ wget git.io/install_cli_sergey -O - | sh
+# run and execute from bootstrapped script (not to be invoked directly): $ curl -L git.io/install_cli_sergey | sh
 # (created with: $ curl -i https://git.io -F "url=https://raw.githubusercontent.com/pisarenko-net/arch-bootstrapper/main/common/layers/500-install_cli.sh" -F "code=install_cli_sergey")
 
 echo "==> Enable time sync"
