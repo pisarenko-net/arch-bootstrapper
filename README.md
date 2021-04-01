@@ -1,8 +1,9 @@
 # arch-bootstrapper
 Automated Arch Linux provisioning for VMs and physical machines at Sergey's place
 
+## Physical machines
 
-## NUC
+### NUC.ch
 
 ```
 $ curl -L git.io/bootstrap_ch_nuc_sergey | sh
