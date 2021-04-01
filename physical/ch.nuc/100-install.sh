@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# run from bootstrapped machine: $ curl -L git.io/apfel_nuc_install | sh
-# (created with: $ curl -i https://git.io -F "url=https://raw.githubusercontent.com/pisarenko-net/arch-bootstrap-scripts/master/nuc/stage1.sh" -F "code=apfel_nuc_install")
+# run from bootstrapped machine: $ curl -L git.io/install_ch_nuc_sergey | sh
+# (created with: $ curl -i https://git.io -F "url=https://raw.githubusercontent.com/pisarenko-net/arch-bootstrapper/main/physical/ch.nuc/100-install.sh" -F "code=install_ch_nuc_sergey")
 
 export USER="sergey"
 export DOMAIN="pisarenko.net"
