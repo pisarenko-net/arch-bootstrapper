@@ -5,7 +5,7 @@ Automated Arch Linux provisioning for VMs and physical machines at Sergey's plac
 
 ### NUC.ch
 
-ch-nuc Last Installed (updated automatically): **1999-01-01**.
+NUC.ch Last Installed (updated automatically): **1999-01-01**.
 
 ```
 $ curl -L git.io/bootstrap_ch_nuc_sergey | sh
@@ -17,7 +17,7 @@ $ curl -L git.io/install_ch_nuc_sergey | sh
 
 ### NUC.lv
 
-ch-nuc Last Installed (updated automatically): 1999-01-01.
+NUC.lv Last Installed (updated automatically): 1999-01-01.
 
 ```
 $ curl -L git.io/bootstrap_lv_nuc_sergey | sh
