@@ -5,6 +5,8 @@ Automated Arch Linux provisioning for VMs and physical machines at Sergey's plac
 
 ### NUC.ch
 
+ch-nuc Last Installed (updated automatically): **1999-01-01**.
+
 ```
 $ curl -L git.io/bootstrap_ch_nuc_sergey | sh
 ```
