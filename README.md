@@ -12,3 +12,13 @@ $ curl -L git.io/bootstrap_ch_nuc_sergey | sh
 ```
 $ curl -L git.io/install_ch_nuc_sergey | sh
 ```
+
+### NUC.lv
+
+```
+$ curl -L git.io/bootstrap_lv_nuc_sergey | sh
+```
+
+```
+$ curl -L git.io/install_ch_nuc_sergey | sh
+```
