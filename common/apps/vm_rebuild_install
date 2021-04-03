@@ -3,7 +3,7 @@
 LUSER="sergey"
 AS="/usr/bin/sudo -u ${LUSER}"
 
-VAGRANT_REPO_DIR="/home/${LUSER}/arch-packer-vagrant"
+VAGRANT_REPO_DIR="/home/${LUSER}/arch-bootstrapper"
 VMS_DIR="${VAGRANT_REPO_DIR}/vagrant/vms"
 
 VM=$1
