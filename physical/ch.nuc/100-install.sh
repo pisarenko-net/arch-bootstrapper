@@ -60,8 +60,6 @@ echo '==> Installing VirtualBox, vagrant, packer and scripts'
 /usr/bin/pacman -S --noconfirm virtualbox vagrant packer
 cd /home/${LUSER}
 $AS /usr/bin/git clone git@github.com:pisarenko-net/arch-bootstrapper.git
-$AS /usr/bin/git clone git@github.com:pisarenko-net/arch-bootstrap-scripts.git
-$AS /usr/bin/git clone git@github.com:pisarenko-net/arch-packer-vagrant.git
 
 echo '==> Installing VirtualBox extensions'
 cd /home/${LUSER}
@@ -86,15 +84,15 @@ echo '==> Installing Arduino tools'
 
 /usr/bin/mkdir /vm_shared
 
-#echo '==> Updating VM templates'    
-#$AS /usr/local/bin/vm_refresh_packer        
+echo '==> Updating VM templates'    
+$AS /usr/local/bin/vm_refresh_packer        
 
-#echo '==> Building and enabling VMs'        
-#for vm in ${INSTALL_VMS}        
-#do        
-#        echo "==> Building VM ${vm}"        
-#        /usr/local/bin/vm_rebuild_install ${vm}                 
-#done                                        
+echo '==> Building and enabling VMs'        
+for vm in ${INSTALL_VMS}        
+do        
+        echo "==> Building VM ${vm}"        
+        /usr/local/bin/vm_rebuild_install ${vm}                 
+done                                        
 
 echo '==> Committing changes to vagrant/packer repo'        
 cd /home/${LUSER}/arch-bootstrapper

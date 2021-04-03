@@ -19,7 +19,7 @@ Vagrant.configure("2") do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://vagrantcloud.com/search.
-  config.vm.box = "arch-base-2021-04-01"
+  config.vm.box = "arch-base-2021-01-01"
 
   config.vm.hostname = "clibox.bethania"
 
