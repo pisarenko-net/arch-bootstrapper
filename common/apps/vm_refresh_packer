@@ -1,8 +1,8 @@
 #!/bin/sh
 
-VAGRANT_REPO_DIR="/home/sergey/arch-packer-vagrant"
+VAGRANT_REPO_DIR="/home/sergey/arch-bootstrapper"
 
-PACKER_DIR="${VAGRANT_REPO_DIR}/packer"
+PACKER_DIR="${VAGRANT_REPO_DIR}/vagrant/packer"
 VMS_DIR="${VAGRANT_REPO_DIR}/vagrant/vms"
 BOX_DEFINITION="${PACKER_DIR}/arch-base.json"
 

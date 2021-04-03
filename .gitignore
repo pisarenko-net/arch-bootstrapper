@@ -1,3 +1,5 @@
 .gitsecret/keys/random_seed
 **/private/*
 !**/*.secret
+**/packer_cache/*
+**/output*

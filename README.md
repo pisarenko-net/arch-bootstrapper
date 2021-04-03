@@ -44,4 +44,41 @@ Install (requires: config decryption key in `private.key`, root):
 
 ## VMs
 
-VMs are managed with Vagrant under VirtualBox.
+The "packer" directory contains scripts and configuration files necessary to produce base ArchLinux image. The "vms" directory contains scripts and Vagrant configuration files to produce complete preconfigured and usable VMs.
+
+### Configure
+
+Base image configuration is specified in `packer/arch-base.json`. Useful settings:
+
+  1. URL to the Arch installation ISO
+  2. URL to fetch mirrors
+  3. Maximum size of the VM disk
+
+The base image is used as a foundation for every VM. This image is based on a minimal Arch Linux. Setup scripts are shared between the VMs and physical machines.
+
+VMs are defined in `vms/xxx/Vagrantfile`. Use `private` folder to bundle secrets, such as SSH keys or license files. See the `Vagrantfile` and corresponding setup scripts for more information.
+
+### Usage
+
+1. Build the base ArchLinux VirtualBox image using [Packer](packer.io):
+```
+$ packer build -force arch-base.json
+$ vagrant box add output/arch_vagrant_base.box --name arch-base-YYYY-MM-DD --force  ## force is needed only when replacing
+```
+2. Edit and provision a particular [Vagrant](https://www.vagrantup.com/) configuration
+
+### Extras
+
+Get rid of VirtualBox menu and status bar:
+```
+VBoxManage setextradata global GUI/Customizations noMenuBar,noStatusBar
+```
+
+To re-enable menu and status bar:
+```
+VBoxManage setextradata global GUI/Customizations MenuBar,StatusBar
+```
+
+There are two useful apps under `common/apps` related to VMs:
+  - **vm_refresh_packer**: updates Arch version and rebuilds the base image
+  - **vm_rebuild_install**: builds and installs a particular VM image

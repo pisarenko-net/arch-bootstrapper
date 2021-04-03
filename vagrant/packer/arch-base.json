@@ -1,0 +1,73 @@
+{
+  "builders": [
+    {
+      "boot_command": [
+        "<enter><wait10><wait10><wait10><wait10>",
+        "/usr/bin/curl -O http://{{ .HTTPIP }}:{{ .HTTPPort }}/enable-ssh.sh<enter><wait5>",
+        "/usr/bin/bash ./enable-ssh.sh<enter>"
+      ],
+      "boot_wait": "5s",
+      "disk_size": "{{ user `disk` }}",
+      "guest_additions_mode": "upload",
+      "guest_os_type": "ArchLinux_64",
+      "hard_drive_interface": "sata",
+      "headless": "{{ user `headless`}}",
+      "http_directory": ".",
+      "iso_checksum": "file:{{ user `iso_checksum_url` }}",
+      "iso_url": "{{ user `iso_url` }}",
+      "shutdown_command": "sudo shutdown -h now",
+      "ssh_password": "vagrant",
+      "ssh_timeout": "{{ user `ssh_timeout` }}",
+      "ssh_username": "vagrant",
+      "type": "virtualbox-iso",
+      "memory": 1024,
+      "iso_interface": "sata",
+      "vboxmanage": [
+	      [ "modifyvm", "{{.Name}}", "--firmware", "EFI" ],
+	      ["modifyvm", "{{.Name}}", "--vram", "128"]
+      ]
+    }
+  ],
+  "post-processors": [
+    {
+      "output": "output/arch_vagrant_base.box",
+      "type": "vagrant"
+    }
+  ],
+  "provisioners": [
+    {
+      "execute_command": "{{ .Vars }} sudo -E -S bash '{{ .Path }}'",
+      "scripts": [
+	      "000-partition_vm.sh",
+	      "050-prepare_base_system.sh",
+	      "075-prepare_vagrant.sh",
+	      "100-install_base_system.sh",
+	      "150-finalize_vm_base_system.sh"
+      ],
+      "environment_vars": [
+	      "DISK=/dev/sda",
+	      "FQDN=arch.bethania",
+              "KEYMAP=us",
+              "LANGUAGE=en_US.UTF-8",
+              "TIMEZONE=Europe/Zurich",    
+              "CONFIG_SCRIPT=/usr/local/bin/arch-config.sh",
+              "BOOT_PARTITION=/dev/sda1",
+              "ROOT_PARTITION=/dev/sda2",
+              "TARGET_DIR=/mnt",
+	      "MIRRORLIST={{ user `mirrorlist_url` }}"
+      ],
+      "type": "shell"
+    }
+  ],
+  "variables": {
+    "country": "DE",
+    "disk": "204800",
+    "headless": "true",
+    "iso_checksum_type": "sha1",
+    "iso_checksum_url": "https://mirror.puzzle.ch/archlinux/iso/2021.04.01/sha1sums.txt",
+    "iso_url": "https://mirror.puzzle.ch/archlinux/iso/2021.04.01/archlinux-2021.04.01-x86_64.iso",
+    "mirrorlist_url" : "https://www.archlinux.org/mirrorlist/?country=DE&protocol=http&protocol=https&ip_version=4&use_mirror_status=on",
+    "ssh_timeout": "20m"
+  }
+}
+

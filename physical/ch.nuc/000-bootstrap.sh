@@ -28,6 +28,7 @@ eval "`/usr/bin/curl -L git.io/partition_drive_sergey`"
 eval "`/usr/bin/curl -L git.io/prepare_base_system_sergey`"
 eval "`/usr/bin/curl -L git.io/prepare_encryption_sergey`"
 eval "`/usr/bin/curl -L git.io/install_base_system_sergey`"
+eval "`/usr/bin/curl -L git.io/finalize_base_system_sergey`"
 
 echo '==> Configuring network'
 /usr/bin/cat <<-EOF > "${TARGET_DIR}/etc/netctl/ethernet-dhcp"

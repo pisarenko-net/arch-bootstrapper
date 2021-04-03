@@ -112,7 +112,7 @@ $AS /usr/bin/gpg --batch --delete-secret-keys 6E77A188BB74BDE4A259A52DB320A1C85A
 echo '==> Updating Last install date in the repo'
 cd /home/${USER}/arch-bootstrapper
 TODAY=`date +%Y-%m-%d`          
-$AS sed -i "s/NUC\.ch Last Installed.*/NUC.ch Last Installed **${TODAY}**/"
+$AS sed -i "s/NUC\.ch Last Installed.*/NUC.ch Last Installed **${TODAY}**/" README.md
 $AS /usr/bin/git add .
 $AS /usr/bin/git commit -m "succesful NUC.ch install"
 $AS /usr/bin/git push

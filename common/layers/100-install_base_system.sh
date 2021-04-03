@@ -42,10 +42,3 @@ EOF
 echo '==> Entering chroot and configuring system'
 /usr/bin/arch-chroot ${TARGET_DIR} ${CONFIG_SCRIPT}
 /usr/bin/rm "${TARGET_DIR}${CONFIG_SCRIPT}"
-/usr/bin/rm "${ENC_KEY_PATH}"
-
-/usr/bin/umount ${TARGET_DIR}/hostlvm
-/usr/bin/rm -rf ${TARGET_DIR}/hostlvm
-
-/usr/bin/umount ${TARGET_DIR}/boot/efi
-/usr/bin/umount ${TARGET_DIR}/boot
