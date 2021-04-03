@@ -71,7 +71,7 @@ $ vagrant box add output/arch_vagrant_base.box --name arch-base-YYYY-MM-DD --for
 
 There are two useful apps under `common/apps` related to VMs:
   - **vm_refresh_packer**: updates Arch version and rebuilds the base image
-  - **vm_rebuild_install**: builds and installs a particular VM image
+  - **vm_rebuild_install** *<vm_name>*: builds and installs a particular VM image
 
 ### VirtualBox
 
