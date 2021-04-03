@@ -7,9 +7,7 @@ export DISK='/dev/nvme0n1'
 
 export FQDN='nuc.bethania'
 export IFACE="eth0"
-export USER='sergey'
-export PASSWORD=$(/usr/bin/openssl passwd -crypt 'test')
-export ROOT_PASSWORD=`/usr/bin/openssl rand -base64 32`
+export LUSER='sergey'
 export KEYMAP='us'
 export LANGUAGE='en_US.UTF-8'
 export TIMEZONE='Europe/Zurich'

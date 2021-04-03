@@ -11,7 +11,7 @@ echo '==> Installing desktop environment'
 
 # configure desktop manager
 echo '==> Enabling desktop manager'
-/usr/bin/sed -i "s/# autologin=dgod/autologin=${USER}/" /etc/lxdm/lxdm.conf
+/usr/bin/sed -i "s/# autologin=dgod/autologin=${LUSER}/" /etc/lxdm/lxdm.conf
 /usr/bin/sed -i 's/# session=\/usr\/bin\/startlxde/session=\/usr\/bin\/startxfce4/' /etc/lxdm/lxdm.conf
 /usr/bin/systemctl enable lxdm.service
 
@@ -26,7 +26,7 @@ $AS /bin/dconf load /org/gnome/meld/ < /tmp/configs/meld
 
 # install pinta
 echo '==> Installing pinta (AUR)'
-cd /home/${USER}
+cd /home/${LUSER}
 $AS /usr/bin/git clone https://aur.archlinux.org/pinta.git
 cd pinta
 $AS /usr/bin/makepkg -si --noconfirm
@@ -35,7 +35,7 @@ $AS /usr/bin/rm -rf pinta
 
 # install albert
 echo '==> Installing albert (AUR)'
-cd /home/${USER}
+cd /home/${LUSER}
 $AS /usr/bin/git clone https://aur.archlinux.org/albert-lite.git
 cd albert-lite
 $AS /usr/bin/makepkg -si --noconfirm
@@ -49,15 +49,15 @@ cd sublime-text-dev
 $AS /usr/bin/makepkg -si --noconfirm
 cd ..
 $AS /usr/bin/rm -rf sublime-text-dev
-/usr/bin/echo 'alias subl="/bin/subl3"' >> /home/${USER}/.zshrc
-/usr/bin/echo 'alias mc="EDITOR=/bin/subl3 /bin/mc"' >> /home/${USER}/.zshrc
+/usr/bin/echo 'alias subl="/bin/subl3"' >> /home/${LUSER}/.zshrc
+/usr/bin/echo 'alias mc="EDITOR=/bin/subl3 /bin/mc"' >> /home/${LUSER}/.zshrc
 $AS /usr/bin/cp -r /tmp/configs/sublime-text-3 .config/
 $AS /usr/bin/mkdir -p .config/sublime-text-3/Local/
 $AS /usr/bin/cp /tmp/private/License.sublime_license .config/sublime-text-3/Local/
 
 # install web browser
 echo '==> Installing brave-bin (AUR)'
-cd /home/${USER}
+cd /home/${LUSER}
 $AS /usr/bin/git clone https://aur.archlinux.org/brave-bin.git
 cd brave-bin
 $AS /usr/bin/makepkg -si --noconfirm

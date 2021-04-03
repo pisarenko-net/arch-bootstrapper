@@ -5,14 +5,11 @@
 # run and execute from configuration scripts (not to be invoked directly): $ curl -L git.io/install_base_system_sergey | sh
 # (created with: $ curl -i https://git.io -F "url=https://raw.githubusercontent.com/pisarenko-net/arch-bootstrapper/main/common/layers/100-install_base_system.sh" -F "code=install_base_system_sergey")
 
+PASSWORD=$(/usr/bin/openssl passwd -crypt 'test')
+ROOT_PASSWORD=`/usr/bin/openssl rand -base64 32`
+
 echo '==> Generating system configuration script'
 /usr/bin/cat <<-EOF >> "${TARGET_DIR}${CONFIG_SCRIPT}"
-#
-# GRUB bootloader installation
-/usr/bin/grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=ArchLinux
-/usr/bin/grub-mkconfig -o /boot/grub/grub.cfg
-/usr/bin/sed -i '/echo/d' /boot/grub/grub.cfg
-#
 echo '${FQDN}' > /etc/hostname
 /usr/bin/ln -sf /usr/share/zoneinfo/${TIMEZONE} /etc/localtime
 echo 'KEYMAP=${KEYMAP}' > /etc/vconsole.conf
@@ -23,13 +20,13 @@ echo "root:${ROOT_PASSWORD}" | /usr/bin/chpasswd
 # https://wiki.archlinux.org/index.php/Network_Configuration#Device_names
 /usr/bin/ln -s /dev/null /etc/udev/rules.d/80-net-setup-link.rules
 /usr/bin/systemctl enable sshd.service
-/usr/bin/useradd --password ${PASSWORD} --create-home --user-group ${USER}
-echo '${USER} ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers.d/10_${USER}
-/usr/bin/chmod 0440 /etc/sudoers.d/10_${USER}
-/usr/bin/install --directory --owner=${USER} --group=${USER} --mode=0700 /home/${USER}/.ssh
-/usr/bin/curl --output /home/${USER}/.ssh/authorized_keys --location https://raw.githubusercontent.com/pisarenko-net/arch-bootstrap-scripts/master/master-key.pub
-/usr/bin/chown ${USER}:${USER} /home/${USER}/.ssh/authorized_keys
-/usr/bin/chmod 0600 /home/${USER}/.ssh/authorized_keys
+/usr/bin/useradd --password ${PASSWORD} --create-home --user-group ${LUSER}
+echo '${LUSER} ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers.d/10_${LUSER}
+/usr/bin/chmod 0440 /etc/sudoers.d/10_${LUSER}
+/usr/bin/install --directory --owner=${LUSER} --group=${LUSER} --mode=0700 /home/${LUSER}/.ssh
+/usr/bin/curl --output /home/${LUSER}/.ssh/authorized_keys --location https://raw.githubusercontent.com/pisarenko-net/arch-bootstrapper/main/master-key.pub
+/usr/bin/chown ${LUSER}:${LUSER} /home/${LUSER}/.ssh/authorized_keys
+/usr/bin/chmod 0600 /home/${LUSER}/.ssh/authorized_keys
 /usr/bin/sed -i 's/#PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_config
 /usr/bin/ln -s /usr/bin/nvim /usr/bin/vi
 /usr/bin/ln -s /usr/bin/nvim /usr/bin/vim

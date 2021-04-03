@@ -3,11 +3,11 @@
 # run from bootstrapped machine: $ curl -L git.io/install_ch_nuc_sergey | sh
 # (created with: $ curl -i https://git.io -F "url=https://raw.githubusercontent.com/pisarenko-net/arch-bootstrapper/main/physical/ch.nuc/100-install.sh" -F "code=install_ch_nuc_sergey")
 
-export USER="sergey"
+export LUSER="sergey"
 export DOMAIN="pisarenko.net"
 export FULL_NAME="Sergey Pisarenko"
 
-export AS="/usr/bin/sudo -u ${USER}"
+export AS="/usr/bin/sudo -u ${LUSER}"
 
 export INSTALL_VMS="example_cli"
 
@@ -43,7 +43,7 @@ echo '==> Installing custom apps'
 echo '==> Installing X driver and enhancements'
 /usr/bin/pacman -S --noconfirm xf86-video-intel compton
 $AS /usr/bin/xfconf-query -c xfwm4 -p /general/use_compositing -s false
-$AS /usr/bin/cp -R /tmp/configs/compton.desktop /home/${USER}/.config/autostart/
+$AS /usr/bin/cp -R /tmp/configs/compton.desktop /home/${LUSER}/.config/autostart/
 
 echo '==> Installing and configuring bluetooth'
 /usr/bin/pacman -S --noconfirm bluez bluez-utils
@@ -58,13 +58,13 @@ echo '==> Enabling better power management'
 
 echo '==> Installing VirtualBox, vagrant, packer and scripts'
 /usr/bin/pacman -S --noconfirm virtualbox vagrant packer
-cd /home/${USER}
+cd /home/${LUSER}
 $AS /usr/bin/git clone git@github.com:pisarenko-net/arch-bootstrapper.git
 $AS /usr/bin/git clone git@github.com:pisarenko-net/arch-bootstrap-scripts.git
 $AS /usr/bin/git clone git@github.com:pisarenko-net/arch-packer-vagrant.git
 
 echo '==> Installing VirtualBox extensions'
-cd /home/${USER}
+cd /home/${LUSER}
 $AS /usr/bin/git clone https://aur.archlinux.org/virtualbox-ext-oracle.git
 cd virtualbox-ext-oracle
 $AS /usr/bin/makepkg -si --noconfirm
@@ -84,6 +84,8 @@ echo '==> Installing media tools'
 echo '==> Installing Arduino tools'
 /usr/bin/pacman -S --noconfirm arduino jdk8-openjdk arduino-avr-core
 
+/usr/bin/mkdir /vm_shared
+
 #echo '==> Updating VM templates'    
 #$AS /usr/local/bin/vm_refresh_packer        
 
@@ -95,7 +97,7 @@ echo '==> Installing Arduino tools'
 #done                                        
 
 echo '==> Committing changes to vagrant/packer repo'        
-cd /home/${USER}/arch-packer-vagrant        
+cd /home/${LUSER}/arch-bootstrapper
 $AS /usr/bin/git add .        
 PACKER_VERSION=`date +%Y-%m-01`          
 $AS /usr/bin/git commit -m "update Arch packer version to: ${PACKER_VERSION}"    
@@ -110,7 +112,7 @@ $AS /usr/bin/gpg --batch --delete-secret-keys 6E77A188BB74BDE4A259A52DB320A1C85A
 /usr/bin/rm -rf /tmp/wallpapers
 
 echo '==> Updating Last install date in the repo'
-cd /home/${USER}/arch-bootstrapper
+cd /home/${LUSER}/arch-bootstrapper
 TODAY=`date +%Y-%m-%d`          
 $AS sed -i "s/NUC\.ch Last Installed.*/NUC.ch Last Installed **${TODAY}**/" README.md
 $AS /usr/bin/git add .

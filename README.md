@@ -44,7 +44,7 @@ Install (requires: config decryption key in `private.key`, root):
 
 ## VMs
 
-The "packer" directory contains scripts and configuration files necessary to produce base ArchLinux image. The "vms" directory contains scripts and Vagrant configuration files to produce complete preconfigured and usable VMs.
+The "vagrant/packer" directory contains scripts and configuration files necessary to produce base ArchLinux image. The "vagrant/vms" directory contains scripts and Vagrant configuration files to produce complete preconfigured and usable VMs.
 
 ### Configure
 

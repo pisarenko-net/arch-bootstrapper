@@ -1,9 +1,9 @@
 #!/bin/sh
 
-USER="sergey"
-AS="/usr/bin/sudo -u ${USER}"
+LUSER="sergey"
+AS="/usr/bin/sudo -u ${LUSER}"
 
-VAGRANT_REPO_DIR="/home/${USER}/arch-packer-vagrant"
+VAGRANT_REPO_DIR="/home/${LUSER}/arch-packer-vagrant"
 VMS_DIR="${VAGRANT_REPO_DIR}/vagrant/vms"
 
 VM=$1
@@ -24,7 +24,7 @@ $AS /usr/bin/vagrant up
 echo "==> Creating VM start-up script"
 /usr/bin/cat <<-EOF > "${START_UP_SCRIPT_PATH}"
 #!/bin/sh
-AS="/usr/bin/sudo -u ${USER}"
+AS="/usr/bin/sudo -u ${LUSER}"
 cd "${VMS_DIR}/${VM}"
 $AS /usr/bin/vagrant up
 EOF
@@ -33,7 +33,7 @@ EOF
 echo "==> Creating VM stop script"
 /usr/bin/cat <<-EOF > "${STOP_SCRIPT_PATH}"
 #!/bin/sh
-AS="/usr/bin/sudo -u ${USER}"
+AS="/usr/bin/sudo -u ${LUSER}"
 cd "${VMS_DIR}/${VM}"
 $AS /usr/bin/vagrant halt
 EOF

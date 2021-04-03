@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-echo "Hoi ${MIRRORLIST} ${COUNTRY}"
-
 echo "==> Create GPT partition table on ${DISK}"
 /usr/bin/sgdisk -og ${DISK}
 

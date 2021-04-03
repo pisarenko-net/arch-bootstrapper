@@ -17,4 +17,13 @@ echo 'vagrant ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers.d/10_vagrant
 /usr/bin/chown vagrant:vagrant /home/vagrant/.ssh/authorized_keys
 /usr/bin/chmod 0600 /home/vagrant/.ssh/authorized_keys
 
+# GRUB bootloader installation    
+/usr/bin/grub-install --target=x86_64-efi --efi-directory=/boot    
+/usr/bin/grub-mkconfig -o /boot/grub/grub.cfg    
+/usr/bin/mkdir /boot/EFI/BOOT    
+/usr/bin/cp /boot/EFI/arch/grubx64.efi /boot/EFI/BOOT/bootx64.efi
+
+# Networking configuration
+/usr/bin/ln -s '/usr/lib/systemd/system/dhcpcd@.service' '/etc/systemd/system/multi-user.target.wants/dhcpcd@eth0.service'
+
 EOF

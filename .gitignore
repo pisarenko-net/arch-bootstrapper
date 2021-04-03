@@ -3,3 +3,4 @@
 !**/*.secret
 **/packer_cache/*
 **/output*
+.vagrant
