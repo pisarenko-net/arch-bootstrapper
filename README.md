@@ -28,7 +28,7 @@ Install (requires: config decryption key in `private.key`, root):
 # curl -L git.io/install_ch_nuc_sergey | sh
 ```
 
-### NUC.lv
+### NUC.lv (not yet operational)
 
 NUC.lv Last Installed (updated automatically): **1999-01-01**.
 
