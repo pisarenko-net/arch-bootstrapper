@@ -69,6 +69,8 @@ $AS /usr/bin/makepkg -si --noconfirm
 cd ..
 $AS /usr/bin/rm -rf virtualbox-ext-oracle
 modprobe vboxdrv
+modprobe vboxnetadp
+modprobe vboxnetflt
 
 echo '==> Install CIFS tools'
 /usr/bin/pacman -S --noconfirm cifs-utils
