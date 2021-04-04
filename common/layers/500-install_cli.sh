@@ -49,7 +49,6 @@ cd ..
 
 echo '==> Configuring SSH keys'
 if [ -f /tmp/private/id_rsa ]; then
-        $AS /usr/bin/mkdir /home/${LUSER}/.ssh
         $AS /usr/bin/cp /tmp/private/id_rsa /home/${LUSER}/.ssh
         $AS /usr/bin/cp /tmp/private/id_rsa.pub /home/${LUSER}/.ssh
         $AS /usr/bin/chmod 400 /home/${LUSER}/.ssh/id_rsa
