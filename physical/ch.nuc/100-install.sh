@@ -28,7 +28,8 @@ $AS /usr/bin/cp -R /tmp/scripts-repo/common/configs /tmp/configs
 $AS /usr/bin/cp -R /tmp/scripts-repo/common/apps /tmp/apps
 $AS /usr/bin/cp -R /tmp/scripts-repo/physical/ch.nuc/configs/* /tmp/configs/
 $AS /usr/bin/cp -R /tmp/scripts-repo/common/wallpapers /tmp/wallpapers
-$AS /usr/bin/cp -R /tmp/scripts-repo/physical/ch.nuc/private /tmp/private
+$AS /usr/bin/cp -R /tmp/scripts-repo/common/private /tmp/private
+$AS /usr/bin/cp -R /tmp/scripts-repo/physical/ch.nuc/private/* /tmp/private/
 $AS /usr/bin/rm /tmp/private/*secret
 
 eval "`/usr/bin/curl -L git.io/install_cli_sergey`"

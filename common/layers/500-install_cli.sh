@@ -48,13 +48,13 @@ cd ..
 /usr/bin/echo 'export SAVEHIST=10000000' >> /home/${LUSER}/.zshenv
 
 echo '==> Configuring SSH keys'
-if [ -f /tmp/private/id_rsa ]; then    
-        $AS /usr/bin/mkdir /home/sergey/.ssh    
-        $AS /usr/bin/cp /tmp/private/id_rsa /home/sergey/.ssh    
-        $AS /usr/bin/cp /tmp/private/id_rsa.pub /home/sergey/.ssh    
-        $AS /usr/bin/chmod 400 /home/sergey/.ssh/id_rsa    
-else    
-        $AS /usr/bin/ssh-keygen -t rsa -f /home/sergey/.ssh/id_rsa -q -P ""    
+if [ -f /tmp/private/id_rsa ]; then
+        $AS /usr/bin/mkdir /home/${LUSER}/.ssh
+        $AS /usr/bin/cp /tmp/private/id_rsa /home/${LUSER}/.ssh
+        $AS /usr/bin/cp /tmp/private/id_rsa.pub /home/${LUSER}/.ssh
+        $AS /usr/bin/chmod 400 /home/${LUSER}/.ssh/id_rsa
+else
+        $AS /usr/bin/ssh-keygen -t rsa -f /home/${LUSER}/.ssh/id_rsa -q -P ""
 fi
 
 $AS /usr/bin/touch /home/${LUSER}/.ssh/known_hosts

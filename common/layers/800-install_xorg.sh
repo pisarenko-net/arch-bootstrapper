@@ -36,11 +36,11 @@ $AS /usr/bin/rm -rf pinta
 # install albert
 echo '==> Installing albert (AUR)'
 cd /home/${LUSER}
-$AS /usr/bin/git clone https://aur.archlinux.org/albert-lite.git
-cd albert-lite
+$AS /usr/bin/git clone https://aur.archlinux.org/albert-minimal.git
+cd albert-minimal
 $AS /usr/bin/makepkg -si --noconfirm
 cd ..
-$AS /usr/bin/rm -rf albert-lite
+$AS /usr/bin/rm -rf albert-minimal
 
 # install sublime
 echo '==> Installing sublime (AUR)'
@@ -53,7 +53,9 @@ $AS /usr/bin/rm -rf sublime-text-dev
 /usr/bin/echo 'alias mc="EDITOR=/bin/subl3 /bin/mc"' >> /home/${LUSER}/.zshrc
 $AS /usr/bin/cp -r /tmp/configs/sublime-text-3 .config/
 $AS /usr/bin/mkdir -p .config/sublime-text-3/Local/
-$AS /usr/bin/cp /tmp/private/License.sublime_license .config/sublime-text-3/Local/
+if [ -f /tmp/private/License.sublime_license ]; then
+    $AS /usr/bin/cp /tmp/private/License.sublime_license .config/sublime-text-3/Local/
+fi
 
 # install web browser
 echo '==> Installing brave-bin (AUR)'
@@ -70,6 +72,17 @@ $AS /usr/bin/cp -r /tmp/configs/xfce4 .config/
 $AS /usr/bin/cp -r /tmp/configs/terminator .config/
 $AS /usr/bin/cp -r /tmp/configs/albert .config/
 $AS /usr/bin/cp -r /tmp/configs/autostart .config/
-/usr/bin/chown -R sergey:users .config
-$AS /usr/bin/mkdir /home/sergey/Pictures
-$AS /usr/bin/cp /tmp/wallpapers/* /home/sergey/Pictures
+/usr/bin/chown -R ${LUSER}:users .config
+$AS /usr/bin/mkdir /home/${LUSER}/Pictures
+
+# install wallpapers
+if [ -d /tmp/wallpapers ]; then
+    $AS /usr/bin/cp /tmp/wallpapers/* /home/${LUSER}/Pictures/
+    for f in /home/${LUSER}/Pictures/*.safe;
+    do
+        filename=${f::-5}
+        destination=`basename ${filename} | base64 -d`
+        base64 -d ${f} > /home/${LUSER}/Pictures/${destination}
+    done;
+    /usr/bin/rm -f /home/${LUSER}/Pictures/*.safe
+fi
