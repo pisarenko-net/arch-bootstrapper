@@ -28,7 +28,7 @@ Install (requires: config decryption key in `private.key`, root):
 # curl -L git.io/install_ch_nuc_sergey | sh
 ```
 
-### NUC.lv
+### NUC.lv (not yet operational)
 
 NUC.lv Last Installed (updated automatically): **1999-01-01**.
 
@@ -69,6 +69,12 @@ $ vagrant box add output/arch_vagrant_base.box --name arch-base-YYYY-MM-DD --for
 
 ### Extras
 
+There are two useful apps under `common/apps` related to VMs:
+  - **vm_refresh_packer**: updates Arch version and rebuilds the base image
+  - **vm_rebuild_install** *<vm_name>*: builds and installs a particular VM image for automatic start on boot
+
+### VirtualBox
+
 Get rid of VirtualBox menu and status bar:
 ```
 VBoxManage setextradata global GUI/Customizations noMenuBar,noStatusBar
@@ -78,7 +84,3 @@ To re-enable menu and status bar:
 ```
 VBoxManage setextradata global GUI/Customizations MenuBar,StatusBar
 ```
-
-There are two useful apps under `common/apps` related to VMs:
-  - **vm_refresh_packer**: updates Arch version and rebuilds the base image
-  - **vm_rebuild_install**: builds and installs a particular VM image
