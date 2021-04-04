@@ -85,6 +85,7 @@ echo '==> Installing Arduino tools'
 /usr/bin/pacman -S --noconfirm arduino jdk8-openjdk arduino-avr-core
 
 /usr/bin/mkdir /vm_shared
+/usr/bin/chown ${LUSER} /vm_shared
 
 echo '==> Updating VM templates'    
 $AS /usr/local/bin/vm_refresh_packer        
