@@ -16,7 +16,7 @@ Common scripts are placed in common/layers folder. For example, the bootstrap is
 
 ### NUC.ch
 
-NUC.ch Last Installed **2021-04-04**
+NUC.ch Last Installed **2021-05-01**
 
 Bootstrap (from Arch installer):
 ```
