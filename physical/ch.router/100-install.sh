@@ -40,38 +40,38 @@ echo '==> Enabling better power management'
 echo '==> Setting OpenSSH to listen only on the trusted network'
 /usr/bin/sed -i 's/#ListenAddress 0.0.0.0/ListenAddress 192.168.10.1/' /etc/ssh/sshd_config
 
-echo '==> Setting up untrusted/IoT VLAN'
-/usr/bin/cat <<-EOF > "${TARGET_DIR}/etc/netctl/untrusted_vlan"
-Interface=${LAN_IFACE}.30
+echo '==> Setting up Network 1 VLAN'
+/usr/bin/cat <<-EOF > "${TARGET_DIR}/etc/netctl/network_1_vlan"
+Interface=${LAN_IFACE}.100
 Connection=vlan
 BindsToInterfaces=${LAN_IFACE}
 VLANID=30
 IP=static
-Address="192.168.30.1/24"
+Address="192.168.100.1/24"
 EOF
-/usr/bin/netctl enable untrusted_vlan
-/usr/bin/netctl start untrusted_vlan
+/usr/bin/netctl enable network_1_vlan
+/usr/bin/netctl start network_1_vlan
 
-echo '==> Setting up semi-trusted VLAN'
-/usr/bin/cat <<-EOF > "${TARGET_DIR}/etc/netctl/semi_trusted_vlan"
-Interface=${LAN_IFACE}.20
+echo '==> Setting up Network 2 VLAN'
+/usr/bin/cat <<-EOF > "${TARGET_DIR}/etc/netctl/network_2_vlan"
+Interface=${LAN_IFACE}.200
 Connection=vlan
 BindsToInterfaces=${LAN_IFACE}
 VLANID=20
 IP=static
-Address="192.168.20.1/24"
+Address="192.168.200.1/24"
 EOF
-/usr/bin/netctl enable semi_trusted_vlan
-/usr/bin/netctl start semi_trusted_vlan
+/usr/bin/netctl enable network_2_vlan
+/usr/bin/netctl start network_2_vlan
 
-echo '==> Setting up guest VLAN'
+echo '==> Setting up Guest VLAN'
 /usr/bin/cat <<-EOF > "${TARGET_DIR}/etc/netctl/guest_vlan"
-Interface=${LAN_IFACE}.40
+Interface=${LAN_IFACE}.99
 Connection=vlan
 BindsToInterfaces=${LAN_IFACE}
 VLANID=40
 IP=static
-Address="192.168.40.1/24"
+Address="192.168.99.1/24"
 EOF
 /usr/bin/netctl enable guest_vlan
 /usr/bin/netctl start guest_vlan
@@ -92,27 +92,6 @@ echo '==> Setting up iptables'
 /usr/bin/systemctl start iptables
 /usr/bin/iptables-restore < /tmp/private/iptables-rules
 /usr/bin/iptables-save > /etc/iptables/iptables.rules
-
-echo '==> Setting up multicast relay'
-/usr/bin/cp /tmp/configs/multicast-relay.py /usr/local/bin/
-/usr/bin/pacman -S --noconfirm python python-netifaces
-/usr/bin/cat <<-EOF > "${TARGET_DIR}/etc/systemd/system/multicast-relay.service"
-[Unit]
-Description=Multicast relay service
-After=netctl@semi_trusted_vlan.service netctl@untrusted_vlan.service
-
-[Service]
-Type=forking
-User=root
-WorkingDirectory=/tmp
-ExecStart=/usr/bin/python /usr/local/bin/multicast-relay.py --interfaces ${LAN_IFACE}.20 ${LAN_IFACE}.30
-Restart=on-failure
-
-[Install]
-WantedBy=multi-user.target
-EOF
-/usr/bin/systemctl enable multicast-relay
-/usr/bin/systemctl start multicast-relay
 
 echo '==> Installing dyndns'
 /usr/bin/pacman -S --noconfirm ddclient
@@ -156,7 +135,7 @@ cd /tmp/scripts-repo
 TODAY=`date +%Y-%m-%d`
 $AS sed -i "s/ch.router Last Installed.*/ch.router Last Installed **${TODAY}**/" README.md
 $AS /usr/bin/git add .
-$AS /usr/bin/git commit -m "succesful ch.router install"
+$AS /usr/bin/git commit -m "successful ch.router install"
 $AS /usr/bin/git push
 
 echo '==> Cleaning up'

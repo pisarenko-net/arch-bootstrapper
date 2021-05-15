@@ -118,6 +118,6 @@ cd /home/${LUSER}/arch-bootstrapper
 TODAY=`date +%Y-%m-%d`
 $AS sed -i "s/ch.nuc Last Installed.*/ch.nuc Last Installed **${TODAY}**/" README.md
 $AS /usr/bin/git add .
-$AS /usr/bin/git commit -m "succesful ch.nuc install"
+$AS /usr/bin/git commit -m "successful ch.nuc install"
 $AS /usr/bin/git push
 
