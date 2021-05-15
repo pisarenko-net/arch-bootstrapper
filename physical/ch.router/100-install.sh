@@ -9,9 +9,6 @@ export FULL_NAME="Sergey Pisarenko"
 
 export AS="/usr/bin/sudo -u ${LUSER}"
 
-export LAN_IFACE="eth1"
-export INCOMING_DRIVE="/dev/sdb"
-
 if [ ! -f private.key ]; then
     echo "Download the GPG private key and save it to private.key first" exit 1
 fi
@@ -32,6 +29,9 @@ $AS /usr/bin/cp -R /tmp/scripts-repo/physical/ch.router/private/* /tmp/private/
 $AS /usr/bin/rm /tmp/private/*secret
 
 eval "`/usr/bin/curl -L git.io/install_cli_sergey`"
+
+export LAN_IFACE="eth1"
+export INCOMING_DRIVE="/dev/sdb"
 
 echo '==> Enabling better power management'
 /usr/bin/pacman -S --noconfirm tlp

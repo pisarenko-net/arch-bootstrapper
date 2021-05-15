@@ -9,8 +9,6 @@ export FULL_NAME="Sergey Pisarenko"
 
 export AS="/usr/bin/sudo -u ${LUSER}"
 
-export INSTALL_VMS="example_cli"
-
 if [ ! -f private.key ]; then
     echo "Download the GPG private key and save it to private.key first" exit 1
 fi
@@ -34,6 +32,8 @@ $AS /usr/bin/rm /tmp/private/*secret
 
 eval "`/usr/bin/curl -L git.io/install_cli_sergey`"
 eval "`/usr/bin/curl -L git.io/install_xorg_sergey`"
+
+export INSTALL_VMS="example_cli"
 
 echo '==> Installing custom apps'
 /usr/bin/cp /tmp/apps/vm_refresh_packer /usr/local/bin/
