@@ -14,27 +14,27 @@ Common scripts are placed in common/layers folder. For example, the bootstrap is
 
 ## Physical machines
 
-### NUC.ch
+### ch.router
 
-NUC.ch Last Installed **2021-05-01**
+ch.router Last Installed **1999-01-01**.
 
 Bootstrap (from Arch installer):
 ```
-$ curl -L git.io/bootstrap_ch_nuc_sergey | sh
+$ curl -L git.io/bootstrap_ch_router_sergey | sh
 ```
 
 Install (requires: config decryption key in `private.key`, root):
 ```
-# curl -L git.io/install_ch_nuc_sergey | sh
+# curl -L git.io/install_ch_router_sergey | sh
 ```
 
-### NUC.lv (not yet operational)
+### ch.nuc
 
-NUC.lv Last Installed (updated automatically): **1999-01-01**.
+ch.nuc Last Installed **2021-05-01**
 
 Bootstrap (from Arch installer):
 ```
-$ curl -L git.io/bootstrap_lv_nuc_sergey | sh
+$ curl -L git.io/bootstrap_ch_nuc_sergey | sh
 ```
 
 Install (requires: config decryption key in `private.key`, root):
