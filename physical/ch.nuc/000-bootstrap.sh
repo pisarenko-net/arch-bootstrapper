@@ -6,7 +6,6 @@
 export DISK='/dev/nvme0n1'
 
 export FQDN='nuc.bethania'
-export IFACE="eth0"
 export LUSER='sergey'
 export KEYMAP='us'
 export LANGUAGE='en_US.UTF-8'
@@ -27,6 +26,8 @@ eval "`/usr/bin/curl -L git.io/prepare_base_system_sergey`"
 eval "`/usr/bin/curl -L git.io/prepare_encryption_sergey`"
 eval "`/usr/bin/curl -L git.io/install_base_system_sergey`"
 eval "`/usr/bin/curl -L git.io/finalize_base_system_sergey`"
+
+export IFACE="eth0"
 
 echo '==> Configuring network'
 /usr/bin/cat <<-EOF > "${TARGET_DIR}/etc/netctl/ethernet-dhcp"

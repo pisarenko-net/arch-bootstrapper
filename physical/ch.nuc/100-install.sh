@@ -88,21 +88,21 @@ echo '==> Installing Arduino tools'
 /usr/bin/mkdir /vm_shared
 /usr/bin/chown ${LUSER} /vm_shared
 
-echo '==> Updating VM templates'    
-$AS /usr/local/bin/vm_refresh_packer        
+echo '==> Updating VM templates'
+$AS /usr/local/bin/vm_refresh_packer
 
-echo '==> Building and enabling VMs'        
-for vm in ${INSTALL_VMS}        
-do        
-        echo "==> Building VM ${vm}"        
-        /usr/local/bin/vm_rebuild_install ${vm}                 
-done                                        
+echo '==> Building and enabling VMs'
+for vm in ${INSTALL_VMS}
+do
+        echo "==> Building VM ${vm}"
+        /usr/local/bin/vm_rebuild_install ${vm}
+done
 
-echo '==> Committing changes to vagrant/packer repo'        
+echo '==> Committing changes to vagrant/packer repo'
 cd /home/${LUSER}/arch-bootstrapper
-$AS /usr/bin/git add .        
-PACKER_VERSION=`date +%Y-%m-01`          
-$AS /usr/bin/git commit -m "update Arch packer version to: ${PACKER_VERSION}"    
+$AS /usr/bin/git add .
+PACKER_VERSION=`date +%Y-%m-01`
+$AS /usr/bin/git commit -m "update Arch packer version to: ${PACKER_VERSION}"
 $AS /usr/bin/git push
 
 echo '==> Cleaning up'
@@ -115,9 +115,9 @@ $AS /usr/bin/gpg --batch --delete-secret-keys 6E77A188BB74BDE4A259A52DB320A1C85A
 
 echo '==> Updating Last install date in the repo'
 cd /home/${LUSER}/arch-bootstrapper
-TODAY=`date +%Y-%m-%d`          
-$AS sed -i "s/NUC\.ch Last Installed.*/NUC.ch Last Installed **${TODAY}**/" README.md
+TODAY=`date +%Y-%m-%d`
+$AS sed -i "s/ch.nuc Last Installed.*/ch.nuc Last Installed **${TODAY}**/" README.md
 $AS /usr/bin/git add .
-$AS /usr/bin/git commit -m "succesful NUC.ch install"
+$AS /usr/bin/git commit -m "succesful ch.nuc install"
 $AS /usr/bin/git push
 

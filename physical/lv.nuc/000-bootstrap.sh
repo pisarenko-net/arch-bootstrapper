@@ -6,10 +6,7 @@
 export DISK='/dev/nvme0n1'
 
 export FQDN='nuc.lv.bethania'
-export IFACE="eth0"
 export LUSER='sergey'
-export PASSWORD=$(/usr/bin/openssl passwd -crypt 'test')
-export ROOT_PASSWORD=`/usr/bin/openssl rand -base64 32`
 export KEYMAP='us'
 export LANGUAGE='en_US.UTF-8'
 export TIMEZONE='Europe/Zurich'
@@ -28,6 +25,8 @@ eval "`/usr/bin/curl -L git.io/partition_drive_sergey`"
 eval "`/usr/bin/curl -L git.io/prepare_base_system_sergey`"
 eval "`/usr/bin/curl -L git.io/prepare_encryption_sergey`"
 eval "`/usr/bin/curl -L git.io/install_base_system_sergey`"
+
+export IFACE="eth0"
 
 echo '==> Configuring network'
 /usr/bin/cat <<-EOF > "${TARGET_DIR}/etc/netctl/ethernet-dhcp"
