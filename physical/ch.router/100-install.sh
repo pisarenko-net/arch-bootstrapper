@@ -45,7 +45,7 @@ echo '==> Setting up Network 1 VLAN'
 Interface=${LAN_IFACE}.100
 Connection=vlan
 BindsToInterfaces=${LAN_IFACE}
-VLANID=30
+VLANID=100
 IP=static
 Address="192.168.100.1/24"
 EOF
@@ -57,19 +57,31 @@ echo '==> Setting up Network 2 VLAN'
 Interface=${LAN_IFACE}.200
 Connection=vlan
 BindsToInterfaces=${LAN_IFACE}
-VLANID=20
+VLANID=200
 IP=static
 Address="192.168.200.1/24"
 EOF
 /usr/bin/netctl enable network_2_vlan
 /usr/bin/netctl start network_2_vlan
 
+echo '==> Setting up Commonwealth VLAN'
+/usr/bin/cat <<-EOF > "${TARGET_DIR}/etc/netctl/commonwealth_vlan"
+Interface=${LAN_IFACE}.150
+Connection=vlan
+BindsToInterfaces=${LAN_IFACE}
+VLANID=150
+IP=static
+Address="192.168.150.1/24"
+EOF
+/usr/bin/netctl enable commonwealth_vlan
+/usr/bin/netctl start commonwealth_vlan
+
 echo '==> Setting up Guest VLAN'
 /usr/bin/cat <<-EOF > "${TARGET_DIR}/etc/netctl/guest_vlan"
 Interface=${LAN_IFACE}.99
 Connection=vlan
 BindsToInterfaces=${LAN_IFACE}
-VLANID=40
+VLANID=99
 IP=static
 Address="192.168.99.1/24"
 EOF
