@@ -19,7 +19,7 @@ cat private.key | $AS /usr/bin/gpg --import
 eval "`/usr/bin/curl -L git.io/prepare_main_install_sergey`"
 
 echo "==> Downloading configuration files and unlocking private configuration files"
-$AS /usr/bin/git clone git@github.com:pisarenko-net/arch-bootstrapper.git /tmp/scripts-repo
+$AS /usr/bin/git clone https://github.com/pisarenko-net/arch-bootstrap-scripts.git /tmp/scripts-repo
 cd /tmp/scripts-repo
 $AS /usr/bin/git secret reveal
 $AS /usr/bin/cp -R /tmp/scripts-repo/common/configs /tmp/configs
@@ -143,12 +143,15 @@ echo "==> Configuring Samba for incoming drive access"
 /usr/bin/systemctl start nmb
 
 echo '==> Updating Last install date in the repo'
-cd /tmp/scripts-repo
+cd /home/${LUSER}
+$AS /usr/bin/git clone git@github.com:pisarenko-net/arch-bootstrapper.git
+cd /home/${LUSER}/arch-bootstrapper
 TODAY=`date +%Y-%m-%d`
 $AS sed -i "s/ch.router Last Installed.*/ch.router Last Installed **${TODAY}**/" README.md
 $AS /usr/bin/git add .
 $AS /usr/bin/git commit -m "successful ch.router install"
 $AS /usr/bin/git push
+/usr/bin/rm -rf /home/${LUSER}/arch-bootstrapper
 
 echo '==> Cleaning up'
 $AS /usr/bin/gpg --batch --delete-secret-keys 6E77A188BB74BDE4A259A52DB320A1C85AFACA96

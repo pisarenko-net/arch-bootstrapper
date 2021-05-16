@@ -5,7 +5,7 @@
 
 export DISK='/dev/sda'
 
-export FQDN='router.bethania'
+export FQDN='ch.router.xama'
 export LUSER='sergey'
 export KEYMAP='us'
 export LANGUAGE='en_US.UTF-8'

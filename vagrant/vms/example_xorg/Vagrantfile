@@ -20,7 +20,7 @@ Vagrant.configure("2") do |config|
   # boxes at https://vagrantcloud.com/search.
   config.vm.box = "arch-base-2021-05-01"
 
-  config.vm.hostname = "xorgbox.bethania"
+  config.vm.hostname = "xorgbox.xama"
 
   config.vm.define "example_xorg"
 

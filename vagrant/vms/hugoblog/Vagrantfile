@@ -21,7 +21,7 @@ Vagrant.configure("2") do |config|
   # boxes at https://vagrantcloud.com/search.
   config.vm.box = "arch-base-2021-05-01"
 
-  config.vm.hostname = "hugoblog.bethania"
+  config.vm.hostname = "hugoblog.xama"
 
   config.vm.define "hugoblog"
 

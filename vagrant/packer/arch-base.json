@@ -47,7 +47,7 @@
       "environment_vars": [
 	      "LUSER=sergey",
 	      "DISK=/dev/sda",
-	      "FQDN=arch.bethania",
+	      "FQDN=arch.xama",
               "KEYMAP=us",
               "LANGUAGE=en_US.UTF-8",
               "TIMEZONE=Europe/Zurich",    

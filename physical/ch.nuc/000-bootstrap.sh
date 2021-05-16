@@ -5,7 +5,7 @@
 
 export DISK='/dev/nvme0n1'
 
-export FQDN='nuc.bethania'
+export FQDN='ch.nuc.xama'
 export LUSER='sergey'
 export KEYMAP='us'
 export LANGUAGE='en_US.UTF-8'

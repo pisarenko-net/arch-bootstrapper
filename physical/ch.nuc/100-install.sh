@@ -19,7 +19,7 @@ cat private.key | $AS /usr/bin/gpg --import
 eval "`/usr/bin/curl -L git.io/prepare_main_install_sergey`"
 
 echo "==> Downloading configuration files and unlocking private configuration files"
-$AS /usr/bin/git clone git@github.com:pisarenko-net/arch-bootstrapper.git /tmp/scripts-repo
+$AS /usr/bin/git clone https://github.com/pisarenko-net/arch-bootstrap-scripts.git /tmp/scripts-repo
 cd /tmp/scripts-repo
 $AS /usr/bin/git secret reveal
 $AS /usr/bin/cp -R /tmp/scripts-repo/common/configs /tmp/configs
@@ -60,7 +60,7 @@ echo '==> Enabling better power management'
 echo '==> Installing VirtualBox, vagrant, packer and scripts'
 /usr/bin/pacman -S --noconfirm virtualbox vagrant packer
 cd /home/${LUSER}
-/usr/bin/mv /tmp/scripts-repo arch-bootstrapper
+$AS /usr/bin/git clone git@github.com:pisarenko-net/arch-bootstrapper.git
 
 echo '==> Installing VirtualBox extensions'
 cd /home/${LUSER}
@@ -107,6 +107,7 @@ $AS /usr/bin/git push
 
 echo '==> Cleaning up'
 $AS /usr/bin/gpg --batch --delete-secret-keys 6E77A188BB74BDE4A259A52DB320A1C85AFACA96
+/usr/bin/rm -rf /tmp/scripts-repo
 /usr/bin/rm -rf /tmp/apps
 /usr/bin/rm -rf /tmp/configs
 /usr/bin/rm -rf /tmp/private
