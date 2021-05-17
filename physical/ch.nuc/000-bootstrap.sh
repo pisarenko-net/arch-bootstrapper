@@ -37,6 +37,10 @@ IP=dhcp
 EOF
 /usr/bin/arch-chroot ${TARGET_DIR} /usr/bin/netctl enable ethernet-dhcp
 
+echo '==> Prepopulating shell history'
+echo 'curl -L git.io/install_ch_nuc_sergey | sh' >> /root/.bash_history
+echo 'vi private.key' >> /root/.bash_history
+
 echo '==> Install complete!'
 /usr/bin/sleep 5
 /usr/bin/umount ${TARGET_DIR}
