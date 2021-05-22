@@ -142,6 +142,12 @@ echo "==> Configuring Samba for incoming drive access"
 /usr/bin/systemctl start smb
 /usr/bin/systemctl start nmb
 
+echo '==> Prepopulating shell history'
+echo 'cat /var/lib/misc/dnsmasq.leases' >> /root/.bash_history
+echo 'vi /etc/dnsmasq.conf' >> /root/.bash_history
+echo 'vi /etc/hosts' >> /root/.bash_history
+echo 'systemctl restart dnsmasq' >> /root/.bash_history
+
 echo '==> Updating Last install date in the repo'
 cd /home/${LUSER}
 $AS /usr/bin/git clone git@github.com:pisarenko-net/arch-bootstrapper.git
