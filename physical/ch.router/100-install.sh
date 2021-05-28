@@ -31,7 +31,6 @@ $AS /usr/bin/rm /tmp/private/*secret
 eval "`/usr/bin/curl -L git.io/install_cli_sergey`"
 
 export LAN_IFACE="eth1"
-export INCOMING_DRIVE="/dev/sdb"
 
 echo '==> Enabling better power management'
 /usr/bin/pacman -S --noconfirm tlp
@@ -110,29 +109,6 @@ echo '==> Installing dyndns'
 /usr/bin/cp /tmp/private/ddclient.conf /etc/ddclient/
 /usr/bin/systemctl enable ddclient
 /usr/bin/systemctl start ddclient
-
-echo "==> Configuring rslsync drive (incoming/music syncs)"
-/usr/bin/pacman -S --noconfirm gdisk
-/usr/bin/sgdisk -og ${INCOMING_DRIVE}
-ENDSECTOR=`/usr/bin/sgdisk -E ${INCOMING_DRIVE}`
-/usr/bin/sgdisk -n 1:2048:${ENDSECTOR} -c 1:"Incoming drive" -t 1:8300 ${INCOMING_DRIVE}
-/usr/bin/mkfs.btrfs -f ${INCOMING_DRIVE}1
-UUID=`/usr/bin/blkid -s UUID -o value ${INCOMING_DRIVE}1`
-echo "# ${INCOMING_DRIVE}1" >> /etc/fstab
-echo "UUID=${UUID}       /mnt/mirror   btrfs           rw,relatime,ssd,space_cache,subvolid=5,subvol=/ 0 2" >> /etc/fstab
-/usr/bin/pacman -R --noconfirm gptfdisk
-/usr/bin/mkdir /mnt/mirror
-/usr/bin/mount /mnt/mirror
-cd /home/${LUSER}
-$AS /usr/bin/git clone https://aur.archlinux.org/rslsync.git
-cd rslsync
-$AS /usr/bin/makepkg -si --noconfirm
-cd ..
-$AS /usr/bin/rm -rf rslsync
-/usr/bin/cp /tmp/private/rslsync.conf /etc/
-/usr/bin/chown rslsync:rslsync /mnt/mirror
-/usr/bin/systemctl enable rslsync
-/usr/bin/systemctl start rslsync
 
 echo '==> Prepopulating shell history'
 echo 'cat /var/lib/misc/dnsmasq.leases' >> /root/.bash_history
