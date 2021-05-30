@@ -19,7 +19,7 @@ cat private.key | $AS /usr/bin/gpg --import
 eval "`/usr/bin/curl -L git.io/prepare_main_install_sergey`"
 
 echo "==> Downloading configuration files and unlocking private configuration files"
-$AS /usr/bin/git clone https://github.com/pisarenko-net/arch-bootstrap-scripts.git /tmp/scripts-repo
+$AS /usr/bin/git clone https://github.com/pisarenko-net/arch-bootstrapper.git /tmp/scripts-repo
 cd /tmp/scripts-repo
 $AS /usr/bin/git secret reveal
 $AS /usr/bin/cp -R /tmp/scripts-repo/common/configs /tmp/configs
