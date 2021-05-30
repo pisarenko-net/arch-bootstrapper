@@ -16,7 +16,7 @@ Common scripts are placed in common/layers folder. For example, the bootstrap is
 
 ### ch.router
 
-ch.router Last Installed **2021-05-16**
+ch.router Last Installed **2021-05-30**
 
 Bootstrap (from Arch installer):
 ```
