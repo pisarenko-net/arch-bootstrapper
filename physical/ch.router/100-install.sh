@@ -39,7 +39,7 @@ echo '==> Enabling better power management'
 echo '==> Setting OpenSSH to listen only on the trusted network'
 /usr/bin/sed -i 's/#ListenAddress 0.0.0.0/ListenAddress 192.168.10.1/' /etc/ssh/sshd_config
 
-echo '==> Setting up Network 1 VLAN'
+echo '==> Setting up Network 1 VLAN (KOCMOC)'
 /usr/bin/cat <<-EOF > "${TARGET_DIR}/etc/netctl/network_1_vlan"
 Interface=${LAN_IFACE}.100
 Connection=vlan
@@ -51,7 +51,7 @@ EOF
 /usr/bin/netctl enable network_1_vlan
 /usr/bin/netctl start network_1_vlan
 
-echo '==> Setting up Network 2 VLAN'
+echo '==> Setting up Network 2 VLAN (CEKCPAKETA)'
 /usr/bin/cat <<-EOF > "${TARGET_DIR}/etc/netctl/network_2_vlan"
 Interface=${LAN_IFACE}.200
 Connection=vlan
@@ -63,7 +63,7 @@ EOF
 /usr/bin/netctl enable network_2_vlan
 /usr/bin/netctl start network_2_vlan
 
-echo '==> Setting up Commonwealth VLAN'
+echo '==> Setting up Shared VLAN (HAMBCEM)'
 /usr/bin/cat <<-EOF > "${TARGET_DIR}/etc/netctl/commonwealth_vlan"
 Interface=${LAN_IFACE}.150
 Connection=vlan
