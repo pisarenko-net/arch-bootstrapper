@@ -22,6 +22,7 @@ echo "==> Downloading configuration files and unlocking private configuration fi
 $AS /usr/bin/git clone https://github.com/pisarenko-net/arch-bootstrapper.git /tmp/scripts-repo
 cd /tmp/scripts-repo
 $AS /usr/bin/git secret reveal
+$AS /usr/bin/cp -R /tmp/scripts-repo/common/apps /tmp/apps
 $AS /usr/bin/cp -R /tmp/scripts-repo/common/configs /tmp/configs
 $AS /usr/bin/cp -R /tmp/scripts-repo/physical/ch.router/configs/* /tmp/configs/
 $AS /usr/bin/cp -R /tmp/scripts-repo/common/private /tmp/private
@@ -31,6 +32,8 @@ $AS /usr/bin/rm /tmp/private/*secret
 eval "`/usr/bin/curl -L git.io/install_cli_sergey`"
 
 export LAN_IFACE="eth1"
+export ARCH_USB_THUMB="/dev/sdc"  # latest arch image is going to be written here monthly
+export ARCH_MIRROR="https://pkg.adfinis.com"  # used to fetch latest arch image
 
 echo '==> Enabling better power management'
 /usr/bin/pacman -S --noconfirm tlp
@@ -109,6 +112,13 @@ echo '==> Installing dyndns'
 /usr/bin/cp /tmp/private/ddclient.conf /etc/ddclient/
 /usr/bin/systemctl enable ddclient
 /usr/bin/systemctl start ddclient
+
+echo '==> Installing cron and auto Arch download'
+/usr/bin/cp /tmp/apps/download_latest_arch /usr/local/bin/
+/usr/bin/chmod +x /usr/local/bin/download_latest_arch
+/usr/bin/pacman -S --noconfirm cronie
+/usr/bin/systemctl enable cronie
+echo "38 16 5 * * /usr/local/bin/download_latest_arch ${ARCH_USB_THUMB} ${ARCH_MIRROR}" | /usr/bin/crontab -
 
 echo '==> Prepopulating shell history'
 echo 'cat /var/lib/misc/dnsmasq.leases' >> /root/.bash_history
