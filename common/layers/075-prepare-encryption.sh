@@ -26,10 +26,10 @@ echo ${ROOT_PASSPHRASE} > ${ENC_KEY_PATH}
 /usr/bin/mkinitcpio -p linux
 /usr/bin/chmod 600 /boot/initramfs-linux*
 
-#    
-# GRUB bootloader installation    
-/usr/bin/grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=ArchLinux    
-/usr/bin/grub-mkconfig -o /boot/grub/grub.cfg    
+# 
+# GRUB bootloader installation
+/usr/bin/grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=ArchLinux --force 
+/usr/bin/grub-mkconfig -o /boot/grub/grub.cfg
 /usr/bin/sed -i '/echo/d' /boot/grub/grub.cfg
 EOF
 
