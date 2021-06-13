@@ -42,6 +42,24 @@ Install (requires: config decryption key in `private.key`, root):
 # curl -L git.io/install_ch_nuc_sergey | sh
 ```
 
+### ch.cddev (CD Player dev environment)
+
+Custom built CD Player appliance powered by Odyssey X86 board. This is the development image, used for building and debugging custom PCBs (e.g. Arduino IDE) and software.
+
+EFI boot entry added manually through efibootmgr. GRUB installer fails to install the entry for some reason.
+
+ch.nuc Last Installed **1999-01-01**
+
+Bootstrap (from Arch installer):
+```
+$ curl -L git.io/bootstrap_ch_cddev_sergey | sh
+```
+
+Install (requires: config decryption key in `private.key`, root):
+```
+# curl -L git.io/install_ch_cddev_sergey | sh
+```
+
 ## VMs
 
 The "vagrant/packer" directory contains scripts and configuration files necessary to produce base ArchLinux image. The "vagrant/vms" directory contains scripts and Vagrant configuration files to produce complete preconfigured and usable VMs.
