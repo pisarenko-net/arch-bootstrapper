@@ -62,6 +62,16 @@ List all boot entries (-v verbose, -b paged)
 bcfg boot dump -v -b
 ```
 
+Delete entry:
+```
+bcfg boot rm 0
+```
+
+Move entry:
+```
+bcfg boot rm 0
+```
+
 ch.nuc Last Installed **1999-01-01**
 
 Bootstrap (from Arch installer):
