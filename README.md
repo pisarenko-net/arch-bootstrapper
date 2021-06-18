@@ -46,32 +46,6 @@ Install (requires: config decryption key in `private.key`, root):
 
 Custom built CD Player appliance powered by Odyssey X86 board. This is the development image, used for building and debugging custom PCBs (e.g. Arduino IDE) and software.
 
-EFI boot entry added manually through efibootmgr. GRUB installer fails to install the entry for some reason.
-
-Instructions for EFI shell:
-
-Add new entry:
-```
-FS1:\> bcfg boot add 0 fs1:\EFI\ArchLinux\grubx64.efi grub
-Target = 0000
-bcfg: Add Boot0000 as 0
-```
-
-List all boot entries (-v verbose, -b paged)
-```
-bcfg boot dump -v -b
-```
-
-Delete entry:
-```
-bcfg boot rm 0
-```
-
-Move entry:
-```
-bcfg boot rm 0
-```
-
 ch.nuc Last Installed **1999-01-01**
 
 Bootstrap (from Arch installer):
