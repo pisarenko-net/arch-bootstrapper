@@ -6,6 +6,7 @@
 export LUSER="sergey"
 export DOMAIN="pisarenko.net"
 export FULL_NAME="Sergey Pisarenko"
+export README_ENTRY="ch.cddev"
 
 export AS="/usr/bin/sudo -u ${LUSER}"
 
@@ -63,14 +64,4 @@ $AS /usr/bin/gpg --batch --delete-secret-keys 6E77A188BB74BDE4A259A52DB320A1C85A
 /usr/bin/rm -rf /tmp/configs
 /usr/bin/rm -rf /tmp/private
 
-echo '==> Updating Last install date in the repo'
-cd /home/${LUSER}
-$AS /usr/bin/git clone git@github.com:pisarenko-net/arch-bootstrapper.git
-cd /home/${LUSER}/arch-bootstrapper
-TODAY=`date +%Y-%m-%d`
-$AS sed -i "s/ch.cddev Last Installed.*/ch.cddev Last Installed **${TODAY}**/" README.md
-$AS /usr/bin/git add .
-$AS /usr/bin/git commit -m "successful ch.cddev install"
-$AS /usr/bin/git push
-/usr/bin/rm -rf /home/${LUSER}/arch-bootstrapper
-
+eval "`/usr/bin/curl -L git.io/report_success_sergey`"

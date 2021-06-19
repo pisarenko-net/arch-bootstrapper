@@ -6,6 +6,7 @@
 export LUSER="sergey"
 export DOMAIN="pisarenko.net"
 export FULL_NAME="Sergey Pisarenko"
+export README_ENTRY="ch.router"
 
 export AS="/usr/bin/sudo -u ${LUSER}"
 
@@ -126,19 +127,10 @@ echo 'vi /etc/dnsmasq.conf' >> /root/.bash_history
 echo 'vi /etc/hosts' >> /root/.bash_history
 echo 'systemctl restart dnsmasq' >> /root/.bash_history
 
-echo '==> Updating Last install date in the repo'
-cd /home/${LUSER}
-$AS /usr/bin/git clone git@github.com:pisarenko-net/arch-bootstrapper.git
-cd /home/${LUSER}/arch-bootstrapper
-TODAY=`date +%Y-%m-%d`
-$AS sed -i "s/ch.router Last Installed.*/ch.router Last Installed **${TODAY}**/" README.md
-$AS /usr/bin/git add .
-$AS /usr/bin/git commit -m "successful ch.router install"
-$AS /usr/bin/git push
-/usr/bin/rm -rf /home/${LUSER}/arch-bootstrapper
-
 echo '==> Cleaning up'
 $AS /usr/bin/gpg --batch --delete-secret-keys 6E77A188BB74BDE4A259A52DB320A1C85AFACA96
 /usr/bin/rm -rf /tmp/scripts-repo
 /usr/bin/rm -rf /tmp/configs
 /usr/bin/rm -rf /tmp/private
+
+eval "`/usr/bin/curl -L git.io/report_success_sergey`"

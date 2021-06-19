@@ -6,6 +6,7 @@
 export LUSER="sergey"
 export DOMAIN="pisarenko.net"
 export FULL_NAME="Sergey Pisarenko"
+export README_ENTRY="ch.nuc"
 
 export AS="/usr/bin/sudo -u ${LUSER}"
 
@@ -114,11 +115,4 @@ $AS /usr/bin/gpg --batch --delete-secret-keys 6E77A188BB74BDE4A259A52DB320A1C85A
 /usr/bin/rm -rf /tmp/private
 /usr/bin/rm -rf /tmp/wallpapers
 
-echo '==> Updating Last install date in the repo'
-cd /home/${LUSER}/arch-bootstrapper
-TODAY=`date +%Y-%m-%d`
-$AS sed -i "s/ch.nuc Last Installed.*/ch.nuc Last Installed **${TODAY}**/" README.md
-$AS /usr/bin/git add .
-$AS /usr/bin/git commit -m "successful ch.nuc install"
-$AS /usr/bin/git push
-
+eval "`/usr/bin/curl -L git.io/report_success_sergey`"
