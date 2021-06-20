@@ -46,7 +46,7 @@ Install (requires: config decryption key in `private.key`, root):
 
 Custom built CD Player appliance powered by Odyssey X86 board. This is the development image, used for building and debugging custom PCBs (e.g. Arduino IDE) and software.
 
-ch.cddev Last Installed **1999-01-01**
+ch.cddev Last Installed **2021-06-20**
 
 Bootstrap (from Arch installer):
 ```
