@@ -39,6 +39,7 @@ echo ${ROOT_PASSPHRASE} > enc.key
 
 echo "==> Mounting /root to ${TARGET_DIR}"
 /usr/bin/mount /dev/mapper/vg0-root ${TARGET_DIR}
+genfstab -U ${TARGET_DIR} > /tmp/fstab
 echo "==> Mounting /boot to ${TARGET_DIR}/boot"
 /usr/bin/mkdir ${TARGET_DIR}/boot
 /usr/bin/mount ${BOOT_PARTITION} ${TARGET_DIR}/boot
