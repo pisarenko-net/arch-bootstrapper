@@ -12,7 +12,7 @@ echo '==> Bootstrapping the base installation'
 /usr/bin/pacstrap ${TARGET_DIR} base base-devel lvm2 linux linux-firmware btrfs-progs netctl neovim dhcpcd openssh grub-efi-x86_64 efibootmgr net-tools intel-ucode wget git tmux mosh
 
 echo '==> Generating the filesystem table'
-/usr/bin/genfstab -U ${TARGET_DIR} >> "${TARGET_DIR}/etc/fstab"
+/usr/bin/cat /tmp/fstab >> "${TARGET_DIR}/etc/fstab"
 
 echo '==> Generating the system configuration script'
 /usr/bin/install --mode=0755 /dev/null "${TARGET_DIR}${CONFIG_SCRIPT}"
