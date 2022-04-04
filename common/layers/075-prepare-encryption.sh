@@ -6,7 +6,7 @@
 # (created with: $ curl -i https://git.io -F "url=https://raw.githubusercontent.com/pisarenko-net/arch-bootstrapper/main/common/layers/075-prepare-encryption.sh" -F "code=prepare_encryption_sergey")
 
 echo '==> Altering default GRUB configuration (for encryption)'
-/usr/bin/sed -i "s/GRUB_CMDLINE_LINUX_DEFAULT=.*/GRUB_CMDLINE_LINUX_DEFAULT=\"quiet noacpi acpi=off rd.udev.log-priority=3 cryptdevice=UUID=$(blkid ${ROOT_PARTITION} -s UUID -o value):cryptlvm\"/" "${TARGET_DIR}/etc/default/grub"
+/usr/bin/sed -i "s/GRUB_CMDLINE_LINUX_DEFAULT=.*/GRUB_CMDLINE_LINUX_DEFAULT=\"quiet rd.udev.log-priority=3 cryptdevice=UUID=$(blkid ${ROOT_PARTITION} -s UUID -o value):cryptlvm\"/" "${TARGET_DIR}/etc/default/grub"
 
 echo '==> LVM work-around'
 /usr/bin/mkdir ${TARGET_DIR}/hostlvm
