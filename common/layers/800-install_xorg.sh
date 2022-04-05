@@ -33,15 +33,6 @@ $AS /usr/bin/makepkg -si --noconfirm
 cd ..
 $AS /usr/bin/rm -rf pinta
 
-# install albert
-echo '==> Installing albert (AUR)'
-cd /home/${LUSER}
-$AS /usr/bin/git clone https://aur.archlinux.org/albert-minimal.git
-cd albert-minimal
-$AS /usr/bin/makepkg -si --noconfirm
-cd ..
-$AS /usr/bin/rm -rf albert-minimal
-
 # install sublime
 echo '==> Installing sublime (AUR)'
 $AS /usr/bin/git clone https://aur.archlinux.org/sublime-text-dev.git
