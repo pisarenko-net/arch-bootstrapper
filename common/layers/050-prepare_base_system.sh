@@ -8,9 +8,6 @@
 echo "==> Setting local mirror"
 /usr/bin/curl -s -L "$MIRRORLIST" |  sed 's/^#Server/Server/' > /etc/pacman.d/mirrorlist
 
-echo '==> Update keyring'
-/usr/bin/pacman -Sy --noconfirm archlinux-keyring
-
 echo '==> Bootstrapping the base installation'
 /usr/bin/pacstrap ${TARGET_DIR} base base-devel lvm2 linux linux-firmware btrfs-progs netctl neovim dhcpcd openssh grub-efi-x86_64 efibootmgr net-tools intel-ucode wget git tmux mosh
 
