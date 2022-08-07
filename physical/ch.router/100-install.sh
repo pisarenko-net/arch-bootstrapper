@@ -51,6 +51,8 @@ BindsToInterfaces=${LAN_IFACE}
 VLANID=100
 IP=static
 Address="192.168.100.1/24"
+ForceConnect=yes
+SkipNoCarrier=yes
 EOF
 /usr/bin/netctl enable network_1_vlan
 /usr/bin/netctl start network_1_vlan
@@ -63,6 +65,8 @@ BindsToInterfaces=${LAN_IFACE}
 VLANID=200
 IP=static
 Address="192.168.200.1/24"
+ForceConnect=yes
+SkipNoCarrier=yes
 EOF
 /usr/bin/netctl enable network_2_vlan
 /usr/bin/netctl start network_2_vlan
@@ -75,6 +79,8 @@ BindsToInterfaces=${LAN_IFACE}
 VLANID=150
 IP=static
 Address="192.168.150.1/24"
+ForceConnect=yes
+SkipNoCarrier=yes
 EOF
 /usr/bin/netctl enable commonwealth_vlan
 /usr/bin/netctl start commonwealth_vlan
@@ -87,6 +93,8 @@ BindsToInterfaces=${LAN_IFACE}
 VLANID=99
 IP=static
 Address="192.168.99.1/24"
+ForceConnect=yes
+SkipNoCarrier=yes
 EOF
 /usr/bin/netctl enable guest_vlan
 /usr/bin/netctl start guest_vlan
