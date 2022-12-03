@@ -35,6 +35,7 @@ echo '==> Configuring networks'
 Interface=${WAN_IFACE}
 Connection=ethernet
 IP=dhcp
+IP6=stateless
 DNS=('8.8.8.8' '8.8.4.4')
 EOF
 /usr/bin/cat <<-EOF > "${TARGET_DIR}/etc/netctl/trusted_lan"
