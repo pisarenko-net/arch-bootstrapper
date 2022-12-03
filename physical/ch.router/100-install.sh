@@ -115,12 +115,12 @@ echo '==> Setting up iptables'
 /usr/bin/systemctl start iptables
 /usr/bin/iptables-restore < /tmp/private/iptables-rules
 /usr/bin/iptables-save > /etc/iptables/iptables.rules
+/usr/bin/ip6tables-restore < /tmp/private/ip6tables-rules
+/usr/bin/ip6tables-save > /etc/iptables/ip6tables.rules
 
-echo '==> Installing dyndns'
-/usr/bin/pacman -S --noconfirm ddclient
-/usr/bin/cp /tmp/private/ddclient.conf /etc/ddclient/
-/usr/bin/systemctl enable ddclient
-/usr/bin/systemctl start ddclient
+echo '==> Setting up 6tunnel'
+/usr/bin/cp /tmp/private/6tunnel.service /etc/systemctl/system/
+/usr/bin/systemctl enable 6tunnel
 
 echo '==> Installing cron and auto Arch download'
 /usr/bin/cp /tmp/apps/download_latest_arch /usr/local/bin/
