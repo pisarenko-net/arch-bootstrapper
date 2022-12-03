@@ -119,7 +119,7 @@ echo '==> Setting up iptables'
 /usr/bin/ip6tables-save > /etc/iptables/ip6tables.rules
 
 echo '==> Setting up IPv6 tunnel'
-/usr/bin/cp /tmp/private/socat-bitwarden.service /etc/systemctl/system/socat-bitwarden.service
+/usr/bin/cp /tmp/private/socat-bitwarden.service /etc/systemd/system/socat-bitwarden.service
 /usr/bin/systemctl enable socat-bitwarden
 
 echo '==> Installing cron and auto Arch download'
