@@ -48,7 +48,7 @@ ForceConnect=yes
 SkipNoCarrier=yes
 EOF
 /usr/bin/arch-chroot ${TARGET_DIR} /usr/bin/netctl enable trusted_lan
-/usr/bin/arch-chroot ${TARGET_DIR} /usr/bin/pacman -S --noconfirm ifplugd 6tunnel
+/usr/bin/arch-chroot ${TARGET_DIR} /usr/bin/pacman -S --noconfirm ifplugd socat
 /usr/bin/arch-chroot ${TARGET_DIR} /usr/bin/systemctl enable netctl-ifplugd@eth0.service
 
 echo '==> Prepopulating shell history'
