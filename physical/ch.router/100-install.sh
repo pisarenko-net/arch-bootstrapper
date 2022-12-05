@@ -118,9 +118,9 @@ echo '==> Setting up iptables'
 /usr/bin/ip6tables-restore < /tmp/private/ip6tables-rules
 /usr/bin/ip6tables-save > /etc/iptables/ip6tables.rules
 
-echo '==> Setting up IPv6 tunnel'
-/usr/bin/cp /tmp/private/socat-bitwarden.service /etc/systemd/system/socat-bitwarden.service
-/usr/bin/systemctl enable socat-bitwarden
+echo '==> Installing OpenVPN'
+/usr/bin/cp /tmp/private/openvpn_client_config.ovpn /etc/openvpn/client/client.conf
+/usr/bin/systemctl enable openvpn-client@client.service
 
 echo '==> Installing cron and auto Arch download'
 /usr/bin/cp /tmp/apps/download_latest_arch /usr/local/bin/
