@@ -5,7 +5,7 @@
 # run and execute from configuration scripts (not to be invoked directly): $ curl -L git.io/install_base_system_sergey | sh
 # (created with: $ curl -i https://git.io -F "url=https://raw.githubusercontent.com/pisarenko-net/arch-bootstrapper/main/common/layers/100-install_base_system.sh" -F "code=install_base_system_sergey")
 
-PASSWORD=$(/usr/bin/openssl passwd -crypt 'test')
+PASSWORD='test'
 ROOT_PASSWORD=`/usr/bin/openssl rand -base64 32`
 
 echo '==> Generating system configuration script'
@@ -20,7 +20,8 @@ echo "root:${ROOT_PASSWORD}" | /usr/bin/chpasswd
 # https://wiki.archlinux.org/index.php/Network_Configuration#Device_names
 /usr/bin/ln -s /dev/null /etc/udev/rules.d/80-net-setup-link.rules
 /usr/bin/systemctl enable sshd.service
-/usr/bin/useradd --password ${PASSWORD} --create-home --user-group ${LUSER}
+/usr/bin/useradd --create-home --user-group ${LUSER}
+echo "${LUSER}:${PASSWORD}" | /usr/bin/chpasswd
 echo '${LUSER} ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers.d/10_${LUSER}
 /usr/bin/chmod 0440 /etc/sudoers.d/10_${LUSER}
 /usr/bin/install --directory --owner=${LUSER} --group=${LUSER} --mode=0700 /home/${LUSER}/.ssh
