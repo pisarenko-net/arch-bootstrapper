@@ -22,6 +22,7 @@ export COUNTRY='CH'
 export MIRRORLIST="https://www.archlinux.org/mirrorlist/?country=${COUNTRY}&protocol=http&protocol=https&ip_version=4&use_mirror_status=on"
 
 eval "`/usr/bin/curl -L git.io/partition_drive_sergey`"
+/usr/bin/pacman -U https://archive.archlinux.org/packages/s/systemd/systemd-254.1-1-x86_64.pkg.tar.zst
 eval "`/usr/bin/curl -L git.io/prepare_base_system_sergey`"
 eval "`/usr/bin/curl -L git.io/prepare_encryption_sergey`"
 eval "`/usr/bin/curl -L git.io/install_base_system_sergey`"
