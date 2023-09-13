@@ -48,7 +48,7 @@ ch.ha Last Installed **2021-05-01**
 
 Bootstrap (from Arch installer):
 ```
-$ curl -L t.ly/xama/ch_ha | sh
+$ curl -L t.ly/xama/ha.ch | sh
 ```
 
 Install (requires: config decryption key in `private.key`, root):
