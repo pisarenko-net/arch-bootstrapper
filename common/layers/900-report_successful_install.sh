@@ -2,8 +2,7 @@
 
 # Update last install date in repository README.
 
-# run and execute from configuration scripts (not to be invoked directly): $ curl -L git.io/report_success_sergey | sh
-# (created with: $ curl -i https://git.io -F "url=https://raw.githubusercontent.com/pisarenko-net/arch-bootstrapper/main/common/layers/900-report_successful_install.sh" -F "code=report_success_sergey")
+# run and execute from configuration scripts (not to be invoked directly): $ curl -L t.ly/xama/report | sh
 
 echo '==> Updating Last install date in the repo'
 cd /home/${LUSER}

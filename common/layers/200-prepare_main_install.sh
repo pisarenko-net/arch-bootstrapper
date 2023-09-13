@@ -2,8 +2,7 @@
 
 # Prepare for main installation.
 
-# run and execute from configuration scripts (not to be invoked directly): $ curl -L git.io/install_base_system_sergey | sh
-# (created with: $ curl -i https://git.io -F "url=https://raw.githubusercontent.com/pisarenko-net/arch-bootstrapper/main/common/layers/200-prepare_main_install.sh" -F "code=prepare_main_install_sergey")
+# run and execute from configuration scripts (not to be invoked directly): $ curl -L t.ly/xama/prepare_main_install | sh
 
 # install git-secret
 cd /home/${LUSER}

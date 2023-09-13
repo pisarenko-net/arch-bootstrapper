@@ -48,12 +48,12 @@ ch.ha Last Installed **2021-05-01**
 
 Bootstrap (from Arch installer):
 ```
-$ curl -L git.io/bootstrap_ch_ha_sergey | sh
+$ curl -L t.ly/xama/ch_ha | sh
 ```
 
 Install (requires: config decryption key in `private.key`, root):
 ```
-# curl -L git.io/install_ch_ha_sergey | sh
+# curl -L t.ly/xama/install_ch_ha | sh
 ```
 
 ### ch.cddev (CD Player dev environment)

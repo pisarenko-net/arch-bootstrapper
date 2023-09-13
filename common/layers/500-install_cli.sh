@@ -2,8 +2,7 @@
 
 # Install base CLI layer: tools and configs to be present on each machine.
 
-# run and execute from bootstrapped script (not to be invoked directly): $ curl -L git.io/install_cli_sergey | sh
-# (created with: $ curl -i https://git.io -F "url=https://raw.githubusercontent.com/pisarenko-net/arch-bootstrapper/main/common/layers/500-install_cli.sh" -F "code=install_cli_sergey")
+# run and execute from bootstrapped script (not to be invoked directly): $ curl -L t.ly/xama/install_cli | sh
 
 echo "==> Enable time sync"
 /usr/bin/timedatectl set-ntp true

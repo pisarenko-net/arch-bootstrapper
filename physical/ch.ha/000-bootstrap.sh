@@ -1,7 +1,6 @@
 #!/bin/bash
 
-# run and execute after dropping into arch installer: $ curl -L git.io/bootstrap_ch_ha_sergey | sh
-# (created with: $ curl -i https://git.io -F "url=https://raw.githubusercontent.com/pisarenko-net/arch-bootstrapper/main/physical/ch.nuc/000-bootstrap.sh" -F "code=bootstrap_ch_nuc_sergey")
+# run and execute after dropping into arch installer: $ curl -L t.ly/xama/ch_ha | sh
 
 export DISK='/dev/nvme0n1'
 
@@ -21,11 +20,11 @@ export ENC_KEY_PATH="${TARGET_DIR}/enc.key"
 export COUNTRY='CH'
 export MIRRORLIST="https://www.archlinux.org/mirrorlist/?country=${COUNTRY}&protocol=http&protocol=https&ip_version=4&use_mirror_status=on"
 
-eval "`/usr/bin/curl -L git.io/partition_drive_sergey`"
-eval "`/usr/bin/curl -L git.io/prepare_base_system_sergey`"
-eval "`/usr/bin/curl -L git.io/prepare_encryption_sergey`"
-eval "`/usr/bin/curl -L git.io/install_base_system_sergey`"
-eval "`/usr/bin/curl -L git.io/finalize_base_system_sergey`"
+eval "`/usr/bin/curl -L t.ly/xama/partition_drive`"
+eval "`/usr/bin/curl -L t.ly/xama/prepare_base_system`"
+eval "`/usr/bin/curl -L t.ly/xama/prepare_encryption`"
+eval "`/usr/bin/curl -L t.ly/xama/install_base_system`"
+eval "`/usr/bin/curl -L t.ly/xama/finalize_base_system`"
 
 export IFACE="eth0"
 
@@ -38,7 +37,7 @@ EOF
 /usr/bin/arch-chroot ${TARGET_DIR} /usr/bin/netctl enable ethernet-dhcp
 
 echo '==> Prepopulating shell history'
-echo 'curl -L git.io/install_ch_ha_sergey | sh' >> "${TARGET_DIR}/root/.bash_history"
+echo 'curl -L t.ly/xama/install_ch_ha | sh' >> "${TARGET_DIR}/root/.bash_history"
 echo 'vi private.key' >> "${TARGET_DIR}/root/.bash_history"
 
 echo '==> Install complete!'

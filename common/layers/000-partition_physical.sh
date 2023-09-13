@@ -2,8 +2,7 @@
 
 # Partition system drive for Arch Linux installation on a physical host with encryption.
 
-# run and execute from configuration scripts (not to be invoked directly): $ curl -L git.io/partition_drive_sergey | sh
-# (created with: $ curl -i https://git.io -F "url=https://raw.githubusercontent.com/pisarenko-net/arch-bootstrapper/main/common/layers/000-partition_physical.sh" -F "code=partition_drive_sergey")
+# run and execute from configuration scripts (not to be invoked directly): $ curl -L t.ly/xama/partition_drive | sh
 
 echo "==> Create GPT partition table on ${DISK}"
 /usr/bin/sgdisk -og ${DISK}

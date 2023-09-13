@@ -2,8 +2,7 @@
 
 # Install base Arch Linux system. Networking configuration is up to each machine definition.
 
-# run and execute from configuration scripts (not to be invoked directly): $ curl -L git.io/install_base_system_sergey | sh
-# (created with: $ curl -i https://git.io -F "url=https://raw.githubusercontent.com/pisarenko-net/arch-bootstrapper/main/common/layers/100-install_base_system.sh" -F "code=install_base_system_sergey")
+# run and execute from configuration scripts (not to be invoked directly): $ curl -L t.ly/xama/install_base_system | sh
 
 PASSWORD='test'
 ROOT_PASSWORD=`/usr/bin/openssl rand -base64 32`
