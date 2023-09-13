@@ -31,6 +31,7 @@ echo '${LUSER} ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers.d/10_${LUSER}
 /usr/bin/sed -i 's/#PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_config
 /usr/bin/ln -s /usr/bin/nvim /usr/bin/vi
 /usr/bin/ln -s /usr/bin/nvim /usr/bin/vim
+/usr/bin/systemctl enable systemd-resolved
 #
 /usr/bin/hwclock --systohc --utc
 # Clean the pacman cache.
