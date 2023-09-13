@@ -9,7 +9,7 @@ echo "==> Setting local mirror"
 /usr/bin/curl -s -L "$MIRRORLIST" |  sed 's/^#Server/Server/' > /etc/pacman.d/mirrorlist
 
 echo '==> Bootstrapping the base installation'
-/usr/bin/pacstrap ${TARGET_DIR} base base-devel lvm2 linux linux-firmware btrfs-progs netctl neovim dhcpcd openssh grub-efi-x86_64 efibootmgr net-tools intel-ucode wget git tmux mosh
+/usr/bin/pacstrap ${TARGET_DIR} base base-devel lvm2 linux linux-firmware btrfs-progs netctl neovim dhcpcd openssh grub-efi-x86_64 efibootmgr net-tools intel-ucode wget git tmux mosh less
 
 echo '==> Generating the filesystem table'
 /usr/bin/cat /tmp/fstab >> "${TARGET_DIR}/etc/fstab"
