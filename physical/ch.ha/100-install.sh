@@ -97,3 +97,7 @@ $AS /usr/bin/gpg --batch --delete-secret-keys 6E77A188BB74BDE4A259A52DB320A1C85A
 /usr/bin/rm -rf /tmp/private
 
 eval "`/usr/bin/curl -L t.ly/xama/report`"
+
+echo '==> Install complete!'
+/usr/bin/sleep 10
+/usr/bin/reboot
