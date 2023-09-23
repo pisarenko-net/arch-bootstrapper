@@ -67,7 +67,7 @@ $AS /usr/bin/VBoxManage modifyvm HA-1 --usbxhci on
 $AS /usr/bin/VBoxManage usbfilter add 0 --target HA-1 --name zigbee --vendorid 10c4
 $AS /usr/bin/VBoxManage modifyvm HA-1 --macaddress1 ${HA_NIC_MAC}
 $AS /usr/bin/VBoxManage modifyvm HA-1 --nic1 bridged --bridgeadapter1 eth0
-#$AS /usr/bin/VBoxManage modifyvm HA-1 --vrde on --vrdeproperty "VNCPassword=test"
+$AS /usr/bin/VBoxManage modifyvm HA-1 --vrde on --vrdeproperty "VNCPassword=test"
 
 echo '==> Enabling HA VM'
 /usr/bin/cat <<-EOF >> "/etc/systemd/system/vboxvmservice@.service"
@@ -86,6 +86,8 @@ RemainAfterExit=yes
 [Install]
 WantedBy=multi-user.target
 EOF
+/usr/bin/systemctl enable vboxvmservice@HA-1
+/usr/bin/systemctl start vboxvmservice@HA-1
 
 echo '==> Cleaning up'
 $AS /usr/bin/gpg --batch --delete-secret-keys 6E77A188BB74BDE4A259A52DB320A1C85AFACA96
