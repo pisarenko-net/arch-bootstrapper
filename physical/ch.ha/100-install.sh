@@ -70,7 +70,22 @@ $AS /usr/bin/VBoxManage modifyvm HA-1 --nic1 bridged --bridgeadapter1 eth0
 #$AS /usr/bin/VBoxManage modifyvm HA-1 --vrde on --vrdeproperty "VNCPassword=test"
 
 echo '==> Enabling HA VM'
+/usr/bin/cat <<-EOF >> "/etc/systemd/system/vboxvmservice@.service"
+[Unit]
+Description=VBox Virtual Machine %i Service
+Requires=systemd-modules-load.service
+After=systemd-modules-load.service
 
+[Service]
+User=${LUSER}
+Group=vboxusers
+ExecStart=/usr/bin/VBoxManage startvm %i --type headless
+ExecStop=/usr/bin/VBoxManage controlvm %i acpipowerbutton
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
+EOF
 
 echo '==> Cleaning up'
 $AS /usr/bin/gpg --batch --delete-secret-keys 6E77A188BB74BDE4A259A52DB320A1C85AFACA96
