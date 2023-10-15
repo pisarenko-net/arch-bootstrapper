@@ -62,9 +62,9 @@ $AS /usr/bin/VBoxManage storageattach HA-1 --storagectl "SATA Controller" --port
 $AS /usr/bin/VBoxManage modifyvm HA-1 --boot1 disk --boot2 none --boot3 none --boot4 none
 $AS /usr/bin/VBoxManage modifyvm HA-1 --firmware efi
 $AS /usr/bin/VBoxManage modifyvm HA-1 --memory 12288 --cpus 8
-$AS /usr/bin/VBoxManage modifyvm HA-1 --usbehci on
-$AS /usr/bin/VBoxManage modifyvm HA-1 --usbxhci on
-$AS /usr/bin/VBoxManage usbfilter add 0 --target HA-1 --name zigbee --vendorid 10c4
+#$AS /usr/bin/VBoxManage modifyvm HA-1 --usbehci on
+#$AS /usr/bin/VBoxManage modifyvm HA-1 --usbxhci on
+#$AS /usr/bin/VBoxManage usbfilter add 0 --target HA-1 --name zigbee --vendorid 10c4
 $AS /usr/bin/VBoxManage modifyvm HA-1 --macaddress1 ${HA_NIC_MAC}
 $AS /usr/bin/VBoxManage modifyvm HA-1 --nic1 bridged --bridgeadapter1 eth0
 $AS /usr/bin/VBoxManage modifyvm HA-1 --vrde on --vrdeproperty "VNCPassword=test"
