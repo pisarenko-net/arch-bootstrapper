@@ -6,7 +6,7 @@ export LUSER="sergey"
 export DOMAIN="pisarenko.net"
 export FULL_NAME="Sergey Pisarenko"
 export README_ENTRY="ch.ha"
-export HA_OS_URL="https://github.com/home-assistant/operating-system/releases/download/10.5/haos_ova-10.5.vdi.zip"
+export HA_OS_URL="https://github.com/home-assistant/operating-system/releases/download/11.0/haos_ova-11.0.vdi.zip"
 export HA_NIC_MAC="722BAC12F8D6"
 
 export AS="/usr/bin/sudo -u ${LUSER}"
