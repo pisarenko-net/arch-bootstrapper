@@ -32,7 +32,7 @@ $AS /usr/bin/cp -R /tmp/scripts-repo/common/private /tmp/private
 $AS /usr/bin/cp -R /tmp/scripts-repo/physical/ch.ha/private/* /tmp/private/
 $AS /usr/bin/rm /tmp/private/*secret
 
-echo '==> Switching network from install NIC to main NIC'
+echo '==> Switching network from service NIC to production NIC'
 /usr/bin/cat <<-EOF > "/etc/netctl/ethernet-dhcp"
 Interface=${IFACE}
 Connection=ethernet
