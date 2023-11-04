@@ -122,15 +122,15 @@ ForceConnect=yes
 SkipNoCarrier=yes
 EOF
 
-echo '==> Installing OpenVPN'
-/usr/bin/cp /tmp/private/openvpn_client_config.ovpn /etc/openvpn/client/client.conf
-/usr/bin/systemctl enable openvpn-client@client.service
-/usr/bin/cp /tmp/private/remove_ip_routes_vpn.sh /usr/bin/local/
-/usr/bin/cp /tmp/private/setup_ip_routes_vpn.sh /usr/bin/local/
-/usr/bin/chmod +x /usr/bin/local/remove_ip_routes_vpn.sh
-/usr/bin/chmod +x /usr/bin/local/setup_ip_routes_vpn.sh
-/usr/bin/cp /tmp/private/setup_ip_routes_vpn.service /etc/systemctl/system/
-/usr/bin/systemctl enable setup_ip_routes_vpn
+#echo '==> Installing OpenVPN'
+#/usr/bin/cp /tmp/private/openvpn_client_config.ovpn /etc/openvpn/client/client.conf
+#/usr/bin/systemctl enable openvpn-client@client.service
+#/usr/bin/cp /tmp/private/remove_ip_routes_vpn.sh /usr/bin/local/
+#/usr/bin/cp /tmp/private/setup_ip_routes_vpn.sh /usr/bin/local/
+#/usr/bin/chmod +x /usr/bin/local/remove_ip_routes_vpn.sh
+#/usr/bin/chmod +x /usr/bin/local/setup_ip_routes_vpn.sh
+#/usr/bin/cp /tmp/private/setup_ip_routes_vpn.service /etc/systemctl/system/
+#/usr/bin/systemctl enable setup_ip_routes_vpn
 
 echo '==> Prepopulating shell history'
 echo 'cat /var/lib/misc/dnsmasq.leases' >> /root/.bash_history
