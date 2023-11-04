@@ -56,11 +56,8 @@ echo '==> Setup dnsmasq (DHCP + DNS)'
 /usr/bin/systemctl enable dnsmasq
 /usr/bin/sed -i "s/DNS=.*/DNS=\('127.0.0.1'\)/" /etc/netctl/wan
 
-echo '==> Deleting install network'
-/usr/bin/netctl disable install-nic
-/usr/bin/rm /etc/netctl/install-nic
-
 echo '==> Configuring networks'
+/usr/bin/pacman -S --noconfirm ifplugd socat
 /usr/bin/cat <<-EOF > "${TARGET_DIR}/etc/netctl/wan"
 Interface=${WAN_IFACE}
 Connection=ethernet
@@ -77,7 +74,6 @@ Address=('192.168.10.1/24')
 ForceConnect=yes
 SkipNoCarrier=yes
 EOF
-/usr/bin/pacman -S --noconfirm ifplugd socat
 
 echo '==> Setting up Network 1 VLAN (KOCMOC)'
 /usr/bin/cat <<-EOF > "${TARGET_DIR}/etc/netctl/network_1_vlan"
@@ -143,9 +139,15 @@ echo 'vi /etc/dnsmasq.conf' >> /root/.bash_history
 echo 'vi /etc/hosts' >> /root/.bash_history
 echo 'systemctl restart dnsmasq' >> /root/.bash_history
 
+eval "`/usr/bin/curl -L git.io/report_success_sergey`"
+
+echo '==> Deleting install network'
+/usr/bin/netctl disable install-nic
+/usr/bin/rm /etc/netctl/install-nic
+
 echo '==> Enable networks'
-/usr/bin/netctl enable trusted_lan
 /usr/bin/systemctl enable netctl-ifplugd@eth0.service
+/usr/bin/netctl enable trusted_lan
 /usr/bin/netctl enable network_1_vlan
 /usr/bin/netctl start network_1_vlan
 /usr/bin/netctl enable network_2_vlan
@@ -155,10 +157,12 @@ echo '==> Enable networks'
 /usr/bin/netctl enable guest_vlan
 /usr/bin/netctl start guest_vlan
 
-echo '==> Setting up iptables'
+echo '==> Install iptables'
 /usr/bin/cp /tmp/private/sysctl_ip_forward /etc/sysctl.d/30-ip_forward.conf
 /usr/bin/sysctl net.ipv4.ip_forward=1
 /usr/bin/pacman -S --noconfirm iptables
+
+echo '==> Enable iptables'
 /usr/bin/systemctl enable iptables
 /usr/bin/systemctl start iptables
 /usr/bin/iptables-restore < /tmp/private/iptables-rules
@@ -174,5 +178,3 @@ $AS /usr/bin/gpg --batch --delete-secret-keys 6E77A188BB74BDE4A259A52DB320A1C85A
 /usr/bin/rm -rf /tmp/scripts-repo
 /usr/bin/rm -rf /tmp/configs
 /usr/bin/rm -rf /tmp/private
-
-eval "`/usr/bin/curl -L git.io/report_success_sergey`"
