@@ -29,12 +29,12 @@ eval "`/usr/bin/curl -L git.io/install_base_system_sergey`"
 eval "`/usr/bin/curl -L git.io/finalize_base_system_sergey`"
 
 echo '==> Configuring network using service NIC'
-/usr/bin/cat <<-EOF > "${TARGET_DIR}/etc/netctl/ethernet-dhcp"
+/usr/bin/cat <<-EOF > "${TARGET_DIR}/etc/netctl/install-nic"
 Interface=${INSTALL_IFACE}
 Connection=ethernet
 IP=dhcp
 EOF
-/usr/bin/arch-chroot ${TARGET_DIR} /usr/bin/netctl enable ethernet-dhcp
+/usr/bin/arch-chroot ${TARGET_DIR} /usr/bin/netctl enable install-nic
 
 echo '==> Prepopulating shell history'
 echo 'curl -L git.io/install_ch_router_sergey | sh' >> "${TARGET_DIR}/root/.bash_history"
