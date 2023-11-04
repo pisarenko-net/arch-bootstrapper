@@ -33,7 +33,7 @@ $AS /usr/bin/cp -R /tmp/scripts-repo/common/private /tmp/private
 $AS /usr/bin/cp -R /tmp/scripts-repo/physical/ch.router/private/* /tmp/private/
 $AS /usr/bin/rm /tmp/private/*secret
 
-eval "`/usr/bin/curl -L git.io/install_cli_sergey`"
+eval "`/usr/bin/curl -L t.ly/xama/install_cli`"
 
 echo '==> Enabling better power management'
 /usr/bin/pacman -S --noconfirm tlp
