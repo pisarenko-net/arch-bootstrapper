@@ -20,12 +20,12 @@ ch.router Last Installed **2022-12-03**
 
 Bootstrap (from Arch installer):
 ```
-$ curl -L git.io/bootstrap_ch_router_sergey | sh
+$ curl -L t.ly/xama/ch_router | sh
 ```
 
 Install (requires: config decryption key in `private.key`, root):
 ```
-# curl -L git.io/install_ch_router_sergey | sh
+# curl -L t.ly/xama/install_ch_router | sh
 ```
 
 ### ch.nuc
