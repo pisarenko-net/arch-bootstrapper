@@ -54,7 +54,6 @@ echo '==> Setup dnsmasq (DHCP + DNS)'
 /usr/bin/cp /tmp/private/dnsmasq.conf /etc/
 /usr/bin/cp /tmp/private/hosts /etc/
 /usr/bin/systemctl enable dnsmasq
-/usr/bin/sed -i "s/DNS=.*/DNS=\('127.0.0.1'\)/" /etc/netctl/wan
 
 echo '==> Configuring networks'
 /usr/bin/pacman -S --noconfirm ifplugd socat
@@ -171,6 +170,7 @@ echo '==> Enable iptables'
 /usr/bin/ip6tables-save > /etc/iptables/ip6tables.rules
 
 echo '==> Enable dnsmasq'
+/usr/bin/sed -i "s/DNS=.*/DNS=\('127.0.0.1'\)/" /etc/netctl/wan
 /usr/bin/systemctl start dnsmasq
 
 echo '==> Cleaning up'
