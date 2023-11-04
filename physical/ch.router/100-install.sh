@@ -35,8 +35,8 @@ $AS /usr/bin/rm /tmp/private/*secret
 eval "`/usr/bin/curl -L git.io/install_cli_sergey`"
 
 echo '==> Deleting install network'
-/usr/bin/netctl disable install_nic
-/usr/bin/rm /etc/netctl/install_nic
+/usr/bin/netctl disable install-nic
+/usr/bin/rm /etc/netctl/install-nic
 
 echo '==> Configuring networks'
 /usr/bin/cat <<-EOF > "${TARGET_DIR}/etc/netctl/wan"
