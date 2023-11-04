@@ -22,11 +22,11 @@ export COUNTRY='CH'
 export MIRRORLIST="https://www.archlinux.org/mirrorlist/?country=${COUNTRY}&protocol=http&protocol=https&ip_version=4&use_mirror_status=on"
 export INSTALL_IFACE="eth2"
 
-eval "`/usr/bin/curl -L git.io/partition_drive_sergey`"
-eval "`/usr/bin/curl -L git.io/prepare_base_system_sergey`"
-eval "`/usr/bin/curl -L git.io/prepare_encryption_sergey`"
-eval "`/usr/bin/curl -L git.io/install_base_system_sergey`"
-eval "`/usr/bin/curl -L git.io/finalize_base_system_sergey`"
+eval "`/usr/bin/curl -L t.ly/xama/partition_drive`"
+eval "`/usr/bin/curl -L t.ly/xama/prepare_base_system`"
+eval "`/usr/bin/curl -L t.ly/xama/prepare_encryption`"
+eval "`/usr/bin/curl -L t.ly/xama/install_base_system`"
+eval "`/usr/bin/curl -L t.ly/xama/finalize_base_system`"
 
 echo '==> Configuring network using service NIC'
 /usr/bin/cat <<-EOF > "${TARGET_DIR}/etc/netctl/install-nic"
