@@ -7,6 +7,8 @@ export LUSER="sergey"
 export DOMAIN="pisarenko.net"
 export FULL_NAME="Sergey Pisarenko"
 export README_ENTRY="ch.router"
+export WAN_IFACE="eth0"
+export LAN_IFACE="eth1"
 
 export AS="/usr/bin/sudo -u ${LUSER}"
 
@@ -32,7 +34,30 @@ $AS /usr/bin/rm /tmp/private/*secret
 
 eval "`/usr/bin/curl -L git.io/install_cli_sergey`"
 
-export LAN_IFACE="eth1"
+echo '==> Deleting install network'
+/usr/bin/rm /etc/netctl/install_nic
+
+echo '==> Configuring networks'
+/usr/bin/cat <<-EOF > "${TARGET_DIR}/etc/netctl/wan"
+Interface=${WAN_IFACE}
+Connection=ethernet
+IP=dhcp
+IP6=stateless
+DNS=('8.8.8.8' '8.8.4.4')
+EOF
+/usr/bin/cat <<-EOF > "${TARGET_DIR}/etc/netctl/trusted_lan"
+Interface=${LAN_IFACE}
+Connection=ethernet
+IP=static
+Address=('192.168.10.1/24')
+
+ForceConnect=yes
+SkipNoCarrier=yes
+EOF
+/usr/bin/arch-chroot ${TARGET_DIR} /usr/bin/netctl enable trusted_lan
+/usr/bin/arch-chroot ${TARGET_DIR} /usr/bin/pacman -S --noconfirm ifplugd socat
+/usr/bin/arch-chroot ${TARGET_DIR} /usr/bin/systemctl enable netctl-ifplugd@eth0.service
+
 export ARCH_USB_THUMB="/dev/sdc"  # latest arch image is going to be written here monthly
 export ARCH_MIRROR="https://pkg.adfinis.com"  # used to fetch latest arch image
 
