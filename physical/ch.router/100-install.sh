@@ -57,14 +57,14 @@ echo '==> Setup dnsmasq (DHCP + DNS)'
 
 echo '==> Configuring networks'
 /usr/bin/pacman -S --noconfirm ifplugd socat
-/usr/bin/cat <<-EOF > "${TARGET_DIR}/etc/netctl/wan"
+/usr/bin/cat <<-EOF > "/etc/netctl/wan"
 Interface=${WAN_IFACE}
 Connection=ethernet
 IP=dhcp
 IP6=stateless
 DNS=('8.8.8.8' '8.8.4.4')
 EOF
-/usr/bin/cat <<-EOF > "${TARGET_DIR}/etc/netctl/trusted_lan"
+/usr/bin/cat <<-EOF > "/etc/netctl/trusted_lan"
 Interface=${LAN_IFACE}
 Connection=ethernet
 IP=static
@@ -75,7 +75,7 @@ SkipNoCarrier=yes
 EOF
 
 echo '==> Setting up Network 1 VLAN (KOCMOC)'
-/usr/bin/cat <<-EOF > "${TARGET_DIR}/etc/netctl/network_1_vlan"
+/usr/bin/cat <<-EOF > "/etc/netctl/network_1_vlan"
 Interface=${LAN_IFACE}.100
 Connection=vlan
 BindsToInterfaces=${LAN_IFACE}
@@ -87,7 +87,7 @@ SkipNoCarrier=yes
 EOF
 
 echo '==> Setting up Network 2 VLAN (CEKCPAKETA)'
-/usr/bin/cat <<-EOF > "${TARGET_DIR}/etc/netctl/network_2_vlan"
+/usr/bin/cat <<-EOF > "/etc/netctl/network_2_vlan"
 Interface=${LAN_IFACE}.200
 Connection=vlan
 BindsToInterfaces=${LAN_IFACE}
@@ -99,7 +99,7 @@ SkipNoCarrier=yes
 EOF
 
 echo '==> Setting up Shared VLAN (HAMBCEM)'
-/usr/bin/cat <<-EOF > "${TARGET_DIR}/etc/netctl/commonwealth_vlan"
+/usr/bin/cat <<-EOF > "/etc/netctl/commonwealth_vlan"
 Interface=${LAN_IFACE}.150
 Connection=vlan
 BindsToInterfaces=${LAN_IFACE}
@@ -111,7 +111,7 @@ SkipNoCarrier=yes
 EOF
 
 echo '==> Setting up Guest VLAN'
-/usr/bin/cat <<-EOF > "${TARGET_DIR}/etc/netctl/guest_vlan"
+/usr/bin/cat <<-EOF > "/etc/netctl/guest_vlan"
 Interface=${LAN_IFACE}.99
 Connection=vlan
 BindsToInterfaces=${LAN_IFACE}
@@ -122,7 +122,8 @@ ForceConnect=yes
 SkipNoCarrier=yes
 EOF
 
-#echo '==> Installing OpenVPN'
+echo '==> Installing OpenVPN'
+/usr/bin/pacman -S --noconfirm openvpn
 #/usr/bin/cp /tmp/private/openvpn_client_config.ovpn /etc/openvpn/client/client.conf
 #/usr/bin/systemctl enable openvpn-client@client.service
 #/usr/bin/cp /tmp/private/remove_ip_routes_vpn.sh /usr/bin/local/
