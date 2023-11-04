@@ -37,7 +37,7 @@ EOF
 /usr/bin/arch-chroot ${TARGET_DIR} /usr/bin/netctl enable install-nic
 
 echo '==> Prepopulating shell history'
-echo 'curl -L git.io/install_ch_router_sergey | sh' >> "${TARGET_DIR}/root/.bash_history"
+echo 'curl -L t.ly/xama/install_ch_router | sh' >> "${TARGET_DIR}/root/.bash_history"
 echo 'vi private.key' >> "${TARGET_DIR}/root/.bash_history"
 
 echo '==> Install complete!'
