@@ -139,7 +139,7 @@ echo 'vi /etc/dnsmasq.conf' >> /root/.bash_history
 echo 'vi /etc/hosts' >> /root/.bash_history
 echo 'systemctl restart dnsmasq' >> /root/.bash_history
 
-eval "`/usr/bin/curl -L git.io/report_success_sergey`"
+eval "`/usr/bin/curl -L t.ly/xama/report`"
 
 echo '==> Deleting install network'
 /usr/bin/netctl disable install-nic
