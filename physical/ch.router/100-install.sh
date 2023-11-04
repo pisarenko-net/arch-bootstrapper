@@ -35,6 +35,7 @@ $AS /usr/bin/rm /tmp/private/*secret
 eval "`/usr/bin/curl -L git.io/install_cli_sergey`"
 
 echo '==> Deleting install network'
+/usr/bin/netctl disable install_nic
 /usr/bin/rm /etc/netctl/install_nic
 
 echo '==> Configuring networks'
@@ -54,9 +55,9 @@ Address=('192.168.10.1/24')
 ForceConnect=yes
 SkipNoCarrier=yes
 EOF
-/usr/bin/arch-chroot ${TARGET_DIR} /usr/bin/netctl enable trusted_lan
-/usr/bin/arch-chroot ${TARGET_DIR} /usr/bin/pacman -S --noconfirm ifplugd socat
-/usr/bin/arch-chroot ${TARGET_DIR} /usr/bin/systemctl enable netctl-ifplugd@eth0.service
+/usr/bin/netctl enable trusted_lan
+/usr/bin/pacman -S --noconfirm ifplugd socat
+/usr/bin/systemctl enable netctl-ifplugd@eth0.service
 
 export ARCH_USB_THUMB="/dev/sdc"  # latest arch image is going to be written here monthly
 export ARCH_MIRROR="https://pkg.adfinis.com"  # used to fetch latest arch image
