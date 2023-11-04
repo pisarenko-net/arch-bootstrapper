@@ -20,7 +20,7 @@ fi
 echo "==> Importing GPG key for decrypting private configuration files"
 cat private.key | $AS /usr/bin/gpg --import
 
-eval "`/usr/bin/curl -L git.io/prepare_main_install_sergey`"
+eval "`/usr/bin/curl -L t.ly/xama/prepare_main_install`"
 
 echo "==> Downloading configuration files and unlocking private configuration files"
 $AS /usr/bin/git clone https://github.com/pisarenko-net/arch-bootstrapper.git /tmp/scripts-repo
