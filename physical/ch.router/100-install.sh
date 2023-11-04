@@ -132,48 +132,50 @@ EOF
 #/usr/bin/cp /tmp/private/setup_ip_routes_vpn.service /etc/systemctl/system/
 #/usr/bin/systemctl enable setup_ip_routes_vpn
 
+echo '==> Deleting install network'
+/usr/bin/netctl disable install-nic
+/usr/bin/rm /etc/netctl/install-nic
+
 echo '==> Prepopulating shell history'
 echo 'cat /var/lib/misc/dnsmasq.leases' >> /root/.bash_history
 echo 'vi /etc/dnsmasq.conf' >> /root/.bash_history
 echo 'vi /etc/hosts' >> /root/.bash_history
 echo 'systemctl restart dnsmasq' >> /root/.bash_history
 
-eval "`/usr/bin/curl -L t.ly/xama/report`"
-
-echo '==> Deleting install network'
-/usr/bin/netctl disable install-nic
-/usr/bin/rm /etc/netctl/install-nic
-
 echo '==> Enable networks'
 /usr/bin/systemctl enable netctl-ifplugd@eth0.service
 /usr/bin/netctl enable trusted_lan
 /usr/bin/netctl enable network_1_vlan
-/usr/bin/netctl start network_1_vlan
 /usr/bin/netctl enable network_2_vlan
-/usr/bin/netctl start network_2_vlan
 /usr/bin/netctl enable commonwealth_vlan
-/usr/bin/netctl start commonwealth_vlan
 /usr/bin/netctl enable guest_vlan
-/usr/bin/netctl start guest_vlan
 
-echo '==> Install iptables'
-/usr/bin/cp /tmp/private/sysctl_ip_forward /etc/sysctl.d/30-ip_forward.conf
-/usr/bin/sysctl net.ipv4.ip_forward=1
+eval "`/usr/bin/curl -L t.ly/xama/report`"
 
 echo '==> Enable iptables'
+/usr/bin/cp /tmp/private/sysctl_ip_forward /etc/sysctl.d/30-ip_forward.conf
+/usr/bin/sysctl net.ipv4.ip_forward=1
 /usr/bin/systemctl enable iptables
-/usr/bin/systemctl start iptables
 /usr/bin/iptables-restore < /tmp/private/iptables-rules
-/usr/bin/iptables-save > /etc/iptables/iptables.rules
+/usr/bin/cp /tmp/private/iptables-rules /etc/iptables/iptables.rules
+#/usr/bin/iptables-save > /etc/iptables/iptables.rules
 /usr/bin/ip6tables-restore < /tmp/private/ip6tables-rules
-/usr/bin/ip6tables-save > /etc/iptables/ip6tables.rules
+/usr/bin/cp /tmp/private/ip6tables-rules /etc/iptables/ip6tables.rules
+#/usr/bin/ip6tables-save > /etc/iptables/ip6tables.rules
 
 echo '==> Enable dnsmasq'
 /usr/bin/sed -i "s/DNS=.*/DNS=\('127.0.0.1'\)/" /etc/netctl/wan
-/usr/bin/systemctl start dnsmasq
+
+# /usr/bin/systemctl start iptables
+# /usr/bin/systemctl start dnsmasq
+# /usr/bin/netctl start network_1_vlan
+# /usr/bin/netctl start network_2_vlan
+# /usr/bin/netctl start commonwealth_vlan
+# /usr/bin/netctl start guest_vlan
 
 echo '==> Cleaning up'
 $AS /usr/bin/gpg --batch --delete-secret-keys 6E77A188BB74BDE4A259A52DB320A1C85AFACA96
 /usr/bin/rm -rf /tmp/scripts-repo
 /usr/bin/rm -rf /tmp/configs
 /usr/bin/rm -rf /tmp/private
+
