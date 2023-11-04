@@ -179,3 +179,6 @@ $AS /usr/bin/gpg --batch --delete-secret-keys 6E77A188BB74BDE4A259A52DB320A1C85A
 /usr/bin/rm -rf /tmp/configs
 /usr/bin/rm -rf /tmp/private
 
+echo '==> Install complete!'
+/usr/bin/sleep 5
+/usr/bin/reboot
