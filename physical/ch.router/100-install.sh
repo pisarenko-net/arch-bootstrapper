@@ -56,6 +56,7 @@ echo '==> Setup dnsmasq (DHCP + DNS)'
 /usr/bin/systemctl enable dnsmasq
 
 echo '==> Configuring networks'
+echo 'resolv_conf_local_only=NO' >> /etc/resolvconf.conf
 /usr/bin/pacman -S --noconfirm ifplugd socat
 /usr/bin/cat <<-EOF > "/etc/netctl/wan"
 Interface=${WAN_IFACE}
