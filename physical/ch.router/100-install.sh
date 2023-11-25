@@ -137,18 +137,14 @@ EOF
 
 echo '==> Installing OpenVPN'
 /usr/bin/pacman -S --noconfirm openvpn
-#/usr/bin/cp /tmp/private/openvpn_client_config.ovpn /etc/openvpn/client/client.conf
-#/usr/bin/systemctl enable openvpn-client@client.service
-#/usr/bin/cp /tmp/private/remove_ip_routes_vpn.sh /usr/bin/local/
-#/usr/bin/cp /tmp/private/setup_ip_routes_vpn.sh /usr/bin/local/
-#/usr/bin/chmod +x /usr/bin/local/remove_ip_routes_vpn.sh
-#/usr/bin/chmod +x /usr/bin/local/setup_ip_routes_vpn.sh
-#/usr/bin/cp /tmp/private/setup_ip_routes_vpn.service /etc/systemctl/system/
-#/usr/bin/systemctl enable setup_ip_routes_vpn
-
-#echo '==> Deleting install network'
-#/usr/bin/netctl disable install-nic
-#/usr/bin/rm /etc/netctl/install-nic
+/usr/bin/cp /tmp/private/openvpn_client_config.ovpn /etc/openvpn/client/client.conf
+/usr/bin/systemctl enable openvpn-client@client.service
+/usr/bin/cp /tmp/private/remove_ip_routes_vpn.sh /usr/local/bin/
+/usr/bin/cp /tmp/private/setup_ip_routes_vpn.sh /usr/local/bin/
+/usr/bin/chmod +x /usr/local/bin/remove_ip_routes_vpn.sh
+/usr/bin/chmod +x /usr/local/bin/setup_ip_routes_vpn.sh
+/usr/bin/cp /tmp/private/setup_ip_routes_vpn.service /etc/systemd/system/
+/usr/bin/systemctl enable setup_ip_routes_vpn
 
 echo '==> Prepopulating shell history'
 echo 'cat /var/lib/misc/dnsmasq.leases' >> /root/.bash_history
@@ -181,18 +177,15 @@ echo '==> Enable iptables'
 echo '==> Enable dnsmasq'
 /usr/bin/sed -i "s/DNS=.*/DNS=\('127.0.0.1'\)/" /etc/netctl/wan
 
-/usr/bin/systemctl start iptables
-/usr/bin/systemctl start dnsmasq
-/usr/bin/netctl start network_1_vlan
-/usr/bin/netctl start network_2_vlan
-/usr/bin/netctl start commonwealth_vlan
-/usr/bin/netctl start guest_vlan
-
 echo '==> Cleaning up'
 $AS /usr/bin/gpg --batch --yes --delete-secret-keys 6E77A188BB74BDE4A259A52DB320A1C85AFACA96
 /usr/bin/rm -rf /tmp/scripts-repo
 /usr/bin/rm -rf /tmp/configs
 /usr/bin/rm -rf /tmp/private
+
+echo '==> Deleting install network'
+/usr/bin/netctl disable install-nic
+/usr/bin/rm /etc/netctl/install-nic
 
 echo '==> Install complete!'
 /usr/bin/sleep 5
