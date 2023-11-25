@@ -8,7 +8,7 @@ export FULL_NAME="Sergey Pisarenko"
 export README_ENTRY="ch.router"
 export WAN_IFACE="eth0"
 export LAN_IFACE="eth1"
-export ARCH_USB_THUMB="/dev/sdc"  # latest arch image is going to be written here monthly
+export ARCH_USB_THUMB="/dev/sdb"  # latest arch image is going to be written here monthly
 export ARCH_MIRROR="https://pkg.adfinis.com"  # used to fetch latest arch image
 
 export AS="/usr/bin/sudo -u ${LUSER}"
@@ -64,16 +64,6 @@ Connection=ethernet
 IP=dhcp
 IP6=stateless
 DNS=('127.0.0.1' '8.8.8.8' '8.8.4.4')
-EOF
-
-/usr/bin/cat <<-EOF > "/etc/netctl/trusted_lan"
-Interface=${LAN_IFACE}
-Connection=ethernet
-IP=static
-Address=('192.168.10.1/24')
-
-ForceConnect=yes
-SkipNoCarrier=yes
 EOF
 
 echo '==> Setting up Network 1 VLAN (KOCMOC)'
@@ -155,7 +145,6 @@ echo 'systemctl restart dnsmasq' >> /root/.bash_history
 
 echo '==> Enable networks'
 /usr/bin/systemctl enable netctl-ifplugd@eth0.service
-/usr/bin/netctl enable trusted_lan
 /usr/bin/netctl enable network_1_vlan
 /usr/bin/netctl enable network_2_vlan
 /usr/bin/netctl enable commonwealth_vlan

@@ -36,6 +36,18 @@ IP=dhcp
 EOF
 /usr/bin/arch-chroot ${TARGET_DIR} /usr/bin/netctl enable install-nic
 
+echo '==> Configuring LAN interface'
+/usr/bin/cat <<-EOF > "/etc/netctl/trusted_lan"
+Interface=${LAN_IFACE}
+Connection=ethernet
+IP=static
+Address=('192.168.10.1/24')
+
+ForceConnect=yes
+SkipNoCarrier=yes
+EOF
+/usr/bin/arch-chroot ${TARGET_DIR} /usr/bin/netctl enable trusted_lan
+
 echo '==> Prepopulating shell history'
 echo 'curl -L t.ly/xama/install_ch_router | sh' >> "${TARGET_DIR}/root/.bash_history"
 echo 'vi private.key' >> "${TARGET_DIR}/root/.bash_history"
