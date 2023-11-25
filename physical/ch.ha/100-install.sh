@@ -98,7 +98,7 @@ EOF
 /usr/bin/systemctl start vboxvmservice@HA-1
 
 echo '==> Cleaning up'
-$AS /usr/bin/gpg --batch --delete-secret-keys 6E77A188BB74BDE4A259A52DB320A1C85AFACA96
+$AS /usr/bin/gpg --batch --yes --delete-secret-keys 6E77A188BB74BDE4A259A52DB320A1C85AFACA96
 /usr/bin/rm -rf /tmp/scripts-repo
 /usr/bin/rm -rf /tmp/apps
 /usr/bin/rm -rf /tmp/configs
