@@ -64,6 +64,7 @@ IP=dhcp
 IP6=stateless
 DNS=('8.8.8.8' '8.8.4.4')
 EOF
+
 /usr/bin/cat <<-EOF > "/etc/netctl/trusted_lan"
 Interface=${LAN_IFACE}
 Connection=ethernet
@@ -122,6 +123,18 @@ ForceConnect=yes
 SkipNoCarrier=yes
 EOF
 
+echo '==> Setting up Install VLAN'
+/usr/bin/cat <<-EOF > "/etc/netctl/install_vlan"
+Interface=eth1.250
+Connection=vlan
+BindsToInterfaces=eth1
+VLANID=250
+IP=static
+Address="172.16.250.1/24" 
+ForceConnect=yes
+SkipNoCarrier=yes
+EOF
+
 echo '==> Installing OpenVPN'
 /usr/bin/pacman -S --noconfirm openvpn
 #/usr/bin/cp /tmp/private/openvpn_client_config.ovpn /etc/openvpn/client/client.conf
@@ -133,9 +146,9 @@ echo '==> Installing OpenVPN'
 #/usr/bin/cp /tmp/private/setup_ip_routes_vpn.service /etc/systemctl/system/
 #/usr/bin/systemctl enable setup_ip_routes_vpn
 
-echo '==> Deleting install network'
-/usr/bin/netctl disable install-nic
-/usr/bin/rm /etc/netctl/install-nic
+#echo '==> Deleting install network'
+#/usr/bin/netctl disable install-nic
+#/usr/bin/rm /etc/netctl/install-nic
 
 echo '==> Prepopulating shell history'
 echo 'cat /var/lib/misc/dnsmasq.leases' >> /root/.bash_history
@@ -150,6 +163,7 @@ echo '==> Enable networks'
 /usr/bin/netctl enable network_2_vlan
 /usr/bin/netctl enable commonwealth_vlan
 /usr/bin/netctl enable guest_vlan
+/usr/bin/netctl enable install_vlan
 
 eval "`/usr/bin/curl -L t.ly/xama/report`"
 
