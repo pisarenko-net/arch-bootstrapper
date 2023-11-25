@@ -63,7 +63,7 @@ Interface=${WAN_IFACE}
 Connection=ethernet
 IP=dhcp
 IP6=stateless
-DNS=('8.8.8.8' '8.8.4.4')
+DNS=('127.0.0.1' '8.8.8.8' '8.8.4.4')
 EOF
 
 /usr/bin/cat <<-EOF > "/etc/netctl/trusted_lan"
@@ -174,9 +174,6 @@ echo '==> Enable iptables'
 /usr/bin/ip6tables-restore < /tmp/private/ip6tables-rules
 /usr/bin/cp /tmp/private/ip6tables-rules /etc/iptables/ip6tables.rules
 /usr/bin/ip6tables-save > /etc/iptables/ip6tables.rules
-
-echo '==> Enable dnsmasq'
-/usr/bin/sed -i "s/DNS=.*/DNS=\('127.0.0.1'\)/" /etc/netctl/wan
 
 echo '==> Cleaning up'
 $AS /usr/bin/gpg --batch --yes --delete-secret-keys 6E77A188BB74BDE4A259A52DB320A1C85AFACA96
