@@ -42,7 +42,7 @@ echo '==> Configuring LAN interface'
 Interface=${LAN_IFACE}
 Connection=ethernet
 IP=static
-Address=('192.168.10.1/24')
+Address=('10.250.250.1/24')
 
 ForceConnect=yes
 SkipNoCarrier=yes
