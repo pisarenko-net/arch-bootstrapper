@@ -20,6 +20,7 @@ export TARGET_DIR='/mnt'
 export ENC_KEY_PATH="${TARGET_DIR}/enc.key"
 export COUNTRY='CH'
 export MIRRORLIST="https://www.archlinux.org/mirrorlist/?country=${COUNTRY}&protocol=http&protocol=https&ip_version=4&use_mirror_status=on"
+export LAN_IFACE="eth1"
 export INSTALL_IFACE="eth2"
 
 eval "`/usr/bin/curl -L t.ly/xama/partition_drive`"
