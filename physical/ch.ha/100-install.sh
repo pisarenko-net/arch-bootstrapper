@@ -8,7 +8,6 @@ export FULL_NAME="Sergey Pisarenko"
 export README_ENTRY="ch.ha"
 export HA_OS_URL="https://github.com/home-assistant/operating-system/releases/download/11.3/haos_ova-11.3.vdi.zip"
 export HA_NIC_MAC="722BAC12F8D6"
-export IFACE="eth0"
 export ARCH_USB_THUMB="/dev/sda"  # latest arch image is going to be written here monthly
 export ARCH_MIRROR="https://pkg.adfinis.com"  # used to fetch latest arch image
 
@@ -33,13 +32,6 @@ $AS /usr/bin/cp -R /tmp/scripts-repo/physical/ch.ha/configs/* /tmp/configs/
 $AS /usr/bin/cp -R /tmp/scripts-repo/common/private /tmp/private
 $AS /usr/bin/cp -R /tmp/scripts-repo/physical/ch.ha/private/* /tmp/private/
 $AS /usr/bin/rm /tmp/private/*secret
-
-echo '==> Switching network from service NIC to production NIC'
-/usr/bin/cat <<-EOF > "/etc/netctl/ethernet-dhcp"
-Interface=${IFACE}
-Connection=ethernet
-IP=dhcp
-EOF
 
 eval "`/usr/bin/curl -L t.ly/xama/install_cli`"
 
