@@ -32,13 +32,6 @@ $AS /usr/bin/cp -R /tmp/scripts-repo/common/private /tmp/private
 $AS /usr/bin/cp -R /tmp/scripts-repo/physical/ch.ha/private/* /tmp/private/
 $AS /usr/bin/rm /tmp/private/*secret
 
-echo '==> Switching network from service NIC to production NIC'
-/usr/bin/cat <<-EOF > "/etc/netctl/ethernet-dhcp"
-Interface=${IFACE}
-Connection=ethernet
-IP=dhcp
-EOF
-
 eval "`/usr/bin/curl -L t.ly/xama/install_cli`"
 
 echo '==> Installing VirtualBox, vagrant, packer and scripts'
