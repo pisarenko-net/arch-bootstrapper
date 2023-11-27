@@ -29,7 +29,7 @@ eval "`/usr/bin/curl -L t.ly/xama/install_base_system`"
 eval "`/usr/bin/curl -L t.ly/xama/finalize_base_system`"
 
 echo '==> Enabling production NIC'
-/usr/bin/cat <<-EOF > "/etc/netctl/prod-lan"
+/usr/bin/cat <<-EOF > "${IFACE_PROD}/etc/netctl/prod-lan"
 Interface=${IFACE_PROD}
 Connection=ethernet
 IP=dhcp
