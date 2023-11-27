@@ -26,9 +26,9 @@ eval "`/usr/bin/curl -L t.ly/xama/prepare_encryption`"
 eval "`/usr/bin/curl -L t.ly/xama/install_base_system`"
 eval "`/usr/bin/curl -L t.ly/xama/finalize_base_system`"
 
-export IFACE="eth1"
+export IFACE="eth0"
 
-echo '==> Configuring network using service NIC'
+echo '==> Configuring network'
 /usr/bin/cat <<-EOF > "${TARGET_DIR}/etc/netctl/ethernet-dhcp"
 Interface=${IFACE}
 Connection=ethernet
