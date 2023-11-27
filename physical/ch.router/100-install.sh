@@ -126,7 +126,7 @@ ForceConnect=yes
 SkipNoCarrier=yes
 EOF
 
-/usr/bin/sed -i "s/Interface=.*/DNS=\('192.168.10.1'\)/" /etc/netctl/trusted_lan
+/usr/bin/sed -i "s/Interface=.*/Interface=\('192.168.10.1'\)/" /etc/netctl/trusted_lan
 
 echo '==> Installing OpenVPN'
 /usr/bin/pacman -S --noconfirm openvpn
