@@ -5,10 +5,7 @@ set -e
 DISK=$1
 MIRROR=$2
 
-PATH="archlinux/iso/latest"
+DATE=$(date -d "`date +%Y%m01`" +%Y.%m.%d)
+PATH="archlinux/iso/latest/archlinux-${DATE}-x86_64.iso"
 
-HTML=`/usr/bin/curl -sL "${MIRROR}/${PATH}"`
-FILENAME=`echo ${HTML} | /usr/bin/grep -o 'href="archlinux.*iso">' | /usr/bin/grep -o "archlinux.*iso"`
-URL="${MIRROR}/${PATH}/${FILENAME}"
-
-/usr/bin/curl -sL ${URL} | /usr/bin/dd conv=fsync bs=4M of=${DISK}
+/usr/bin/curl -sL "${MIRROR}/${PATH}" | /usr/bin/dd conv=fsync bs=4M of=${DISK}

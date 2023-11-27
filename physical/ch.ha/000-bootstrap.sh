@@ -19,6 +19,8 @@ export TARGET_DIR='/mnt'
 export ENC_KEY_PATH="${TARGET_DIR}/enc.key"
 export COUNTRY='CH'
 export MIRRORLIST="https://www.archlinux.org/mirrorlist/?country=${COUNTRY}&protocol=http&protocol=https&ip_version=4&use_mirror_status=on"
+export IFACE_PROD="eth0"
+export IFACE_SERVICE="eth1"
 
 eval "`/usr/bin/curl -L t.ly/xama/partition_drive`"
 eval "`/usr/bin/curl -L t.ly/xama/prepare_base_system`"
@@ -26,15 +28,20 @@ eval "`/usr/bin/curl -L t.ly/xama/prepare_encryption`"
 eval "`/usr/bin/curl -L t.ly/xama/install_base_system`"
 eval "`/usr/bin/curl -L t.ly/xama/finalize_base_system`"
 
-export IFACE="eth0"
-
-echo '==> Configuring network'
-/usr/bin/cat <<-EOF > "${TARGET_DIR}/etc/netctl/ethernet-dhcp"
-Interface=${IFACE}
+echo '==> Enabling production NIC'
+/usr/bin/cat <<-EOF > "/etc/netctl/prod-lan"
+Interface=${IFACE_PROD}
 Connection=ethernet
 IP=dhcp
 EOF
-/usr/bin/arch-chroot ${TARGET_DIR} /usr/bin/netctl enable ethernet-dhcp
+echo '==> Enabling service NIC'
+/usr/bin/cat <<-EOF > "${TARGET_DIR}/etc/netctl/service-lan"
+Interface=${IFACE_SERVICE}
+Connection=ethernet
+IP=dhcp
+EOF
+/usr/bin/arch-chroot ${TARGET_DIR} /usr/bin/netctl enable prod-lan
+/usr/bin/arch-chroot ${TARGET_DIR} /usr/bin/netctl enable service-lan
 
 echo '==> Prepopulating shell history'
 echo 'curl -L t.ly/xama/install_ch_ha | sh' >> "${TARGET_DIR}/root/.bash_history"

@@ -8,7 +8,8 @@ export FULL_NAME="Sergey Pisarenko"
 export README_ENTRY="ch.ha"
 export HA_OS_URL="https://github.com/home-assistant/operating-system/releases/download/11.3/haos_ova-11.3.vdi.zip"
 export HA_NIC_MAC="722BAC12F8D6"
-export IFACE="eth0"
+export ARCH_USB_THUMB="/dev/sda"  # latest arch image is going to be written here monthly
+export ARCH_MIRROR="https://pkg.adfinis.com"  # used to fetch latest arch image
 
 export AS="/usr/bin/sudo -u ${LUSER}"
 
@@ -33,6 +34,13 @@ $AS /usr/bin/cp -R /tmp/scripts-repo/physical/ch.ha/private/* /tmp/private/
 $AS /usr/bin/rm /tmp/private/*secret
 
 eval "`/usr/bin/curl -L t.ly/xama/install_cli`"
+
+echo '==> Installing cron and auto Arch download'
+/usr/bin/cp /tmp/apps/download_latest_arch /usr/local/bin/
+/usr/bin/chmod +x /usr/local/bin/download_latest_arch
+/usr/bin/pacman -S --noconfirm cronie
+/usr/bin/systemctl enable cronie
+echo "38 16 5 * * /usr/local/bin/download_latest_arch ${ARCH_USB_THUMB} ${ARCH_MIRROR}" | /usr/bin/crontab -
 
 echo '==> Installing VirtualBox, vagrant, packer and scripts'
 /usr/bin/pacman -S --noconfirm virtualbox
@@ -67,7 +75,9 @@ $AS /usr/bin/VBoxManage modifyvm HA-1 --usbehci on
 $AS /usr/bin/VBoxManage modifyvm HA-1 --usbxhci on
 $AS /usr/bin/VBoxManage usbfilter add 0 --target HA-1 --name zigbee --vendorid 10c4
 $AS /usr/bin/VBoxManage modifyvm HA-1 --macaddress1 ${HA_NIC_MAC}
+$AS /usr/bin/VBoxManage modifyvm HA-1 --macaddress2 ${HA_NIC_MAC}
 $AS /usr/bin/VBoxManage modifyvm HA-1 --nic1 bridged --bridgeadapter1 eth0
+$AS /usr/bin/VBoxManage modifyvm HA-1 --nic2 bridged --bridgeadapter1 eth1
 $AS /usr/bin/VBoxManage modifyvm HA-1 --vrde on --vrdeproperty "VNCPassword=test"
 
 echo '==> Enabling HA VM'
