@@ -41,6 +41,13 @@ EOF
 
 eval "`/usr/bin/curl -L t.ly/xama/install_cli`"
 
+echo '==> Installing cron and auto Arch download'
+/usr/bin/cp /tmp/apps/download_latest_arch /usr/local/bin/
+/usr/bin/chmod +x /usr/local/bin/download_latest_arch
+/usr/bin/pacman -S --noconfirm cronie
+/usr/bin/systemctl enable cronie
+echo "38 16 5 * * /usr/local/bin/download_latest_arch ${ARCH_USB_THUMB} ${ARCH_MIRROR}" | /usr/bin/crontab -
+
 echo '==> Installing VirtualBox, vagrant, packer and scripts'
 /usr/bin/pacman -S --noconfirm virtualbox
 cd /home/${LUSER}
