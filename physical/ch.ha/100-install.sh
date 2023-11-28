@@ -104,6 +104,8 @@ EOF
 echo '==> Configuring reverse proxy'
 /usr/bin/pacman -S --noconfirm nginx
 /usr/bin/cp /tmp/private/nginx.conf /etc/nginx/nginx.conf
+/usr/bin/awk '/\[Unit\]/{print;print "StartLimitInterval=200";print "StartLimitBurst=5";next}1' /lib/systemd/system/nginx.service | awk '/\[Service\]/{print;print "Restart=always";print "RestartSec=30";next}1' > /tmp/nginx.service
+/usr/bin/cp /tmp/nginx.service /lib/systemd/system/nginx.service
 /usr/bin/systemctl enable nginx
 
 echo '==> Cleaning up'
