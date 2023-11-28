@@ -101,12 +101,18 @@ EOF
 /usr/bin/systemctl enable vboxvmservice@HA-1
 /usr/bin/systemctl start vboxvmservice@HA-1
 
+echo '==> Configuring reverse proxy'
+/usr/bin/pacman -S --noconfirm nginx
+/usr/bin/cp /tmp/configs/nginx.conf /etc/nginx/nginx.conf
+/usr/bin/systemctl enable nginx
+
 echo '==> Cleaning up'
 $AS /usr/bin/gpg --batch --yes --delete-secret-keys 6E77A188BB74BDE4A259A52DB320A1C85AFACA96
 /usr/bin/rm -rf /tmp/scripts-repo
 /usr/bin/rm -rf /tmp/apps
 /usr/bin/rm -rf /tmp/configs
 /usr/bin/rm -rf /tmp/private
+/usr/bin/rm -rf /root/private.key
 
 eval "`/usr/bin/curl -L t.ly/xama/report`"
 
