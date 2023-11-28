@@ -171,6 +171,7 @@ $AS /usr/bin/gpg --batch --yes --delete-secret-keys 6E77A188BB74BDE4A259A52DB320
 /usr/bin/rm -rf /tmp/scripts-repo
 /usr/bin/rm -rf /tmp/configs
 /usr/bin/rm -rf /tmp/private
+/usr/bin/rm /root/private.key
 
 echo '==> Deleting install network'
 /usr/bin/netctl disable install-nic
