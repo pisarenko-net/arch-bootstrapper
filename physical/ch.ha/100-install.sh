@@ -103,7 +103,7 @@ EOF
 
 echo '==> Configuring reverse proxy'
 /usr/bin/pacman -S --noconfirm nginx
-/usr/bin/cp /tmp/configs/nginx.conf /etc/nginx/nginx.conf
+/usr/bin/cp /tmp/private/nginx.conf /etc/nginx/nginx.conf
 /usr/bin/systemctl enable nginx
 
 echo '==> Cleaning up'
