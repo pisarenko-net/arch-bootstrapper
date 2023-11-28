@@ -7,7 +7,8 @@ export DOMAIN="pisarenko.net"
 export FULL_NAME="Sergey Pisarenko"
 export README_ENTRY="ch.ha"
 export HA_OS_URL="https://github.com/home-assistant/operating-system/releases/download/11.1/haos_ova-11.1.vdi.zip"
-export HA_NIC_MAC="722BAC12F8D6"
+export HA_NIC_MAC_PROD="722BAC12F8D6"
+export HA_NIC_MAC_INSTALL="722BAC12F8D7"
 export ARCH_USB_THUMB="/dev/sda"  # latest arch image is going to be written here monthly
 export ARCH_MIRROR="https://pkg.adfinis.com"  # used to fetch latest arch image
 
@@ -74,8 +75,8 @@ $AS /usr/bin/VBoxManage modifyvm HA-1 --memory 12288 --cpus 8
 $AS /usr/bin/VBoxManage modifyvm HA-1 --usbehci on
 $AS /usr/bin/VBoxManage modifyvm HA-1 --usbxhci on
 $AS /usr/bin/VBoxManage usbfilter add 0 --target HA-1 --name zigbee --vendorid 10c4
-$AS /usr/bin/VBoxManage modifyvm HA-1 --macaddress1 ${HA_NIC_MAC}
-$AS /usr/bin/VBoxManage modifyvm HA-1 --macaddress2 ${HA_NIC_MAC}
+$AS /usr/bin/VBoxManage modifyvm HA-1 --macaddress1 ${HA_NIC_MAC_PROD}
+$AS /usr/bin/VBoxManage modifyvm HA-1 --macaddress2 ${HA_NIC_MAC_INSTALL}
 $AS /usr/bin/VBoxManage modifyvm HA-1 --nic1 bridged --bridgeadapter1 eth0
 $AS /usr/bin/VBoxManage modifyvm HA-1 --nic2 bridged --bridgeadapter1 eth1
 $AS /usr/bin/VBoxManage modifyvm HA-1 --vrde on --vrdeproperty "VNCPassword=test"
