@@ -4,8 +4,14 @@
 
 if [ -e '/dev/nvme0n1' ]; then
 	export DISK='/dev/nvme0n1'
+	export EFI_PARTITION="${DISK}p1"
+	export BOOT_PARTITION="${DISK}p2"
+	export ROOT_PARTITION="${DISK}p3"
 else
 	export DISK='/dev/sda'
+	export EFI_PARTITION="${DISK}1"
+	export BOOT_PARTITION="${DISK}2"
+	export ROOT_PARTITION="${DISK}3"
 fi
 
 export FQDN='ch.ha.xama'
@@ -15,10 +21,7 @@ export LANGUAGE='en_US.UTF-8'
 export TIMEZONE='Europe/Zurich'
 
 export CONFIG_SCRIPT='/usr/local/bin/arch-config.sh'
-export EFI_PARTITION="${DISK}p1"
-export BOOT_PARTITION="${DISK}p2"
-export ROOT_PARTITION="${DISK}p3"
-export ROOT_PASSPHRASE=`/usr/bin/openssl rand -base64 32`
+xport ROOT_PASSPHRASE=`/usr/bin/openssl rand -base64 32`
 export TARGET_DIR='/mnt'
 export ENC_KEY_PATH="${TARGET_DIR}/enc.key"
 export COUNTRY='CH'
