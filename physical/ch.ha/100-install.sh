@@ -9,8 +9,13 @@ export README_ENTRY="ch.ha"
 export HA_OS_URL="https://github.com/home-assistant/operating-system/releases/download/11.1/haos_ova-11.1.vdi.zip"
 export HA_NIC_MAC_PROD="722BAC12F8D6"
 export HA_NIC_MAC_INSTALL="722BAC12F8D7"
-export ARCH_USB_THUMB="/dev/sda"  # latest arch image is going to be written here monthly
 export ARCH_MIRROR="https://pkg.adfinis.com"  # used to fetch latest arch image
+
+if [ -e '/dev/nvme0n1' ]; then
+	export ARCH_USB_THUMB="/dev/sda"  # latest arch image is going to be written here monthly
+else
+	export ARCH_USB_THUMB="/dev/sdb"
+fi
 
 export AS="/usr/bin/sudo -u ${LUSER}"
 
