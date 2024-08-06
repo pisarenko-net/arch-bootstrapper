@@ -26,8 +26,8 @@ export TARGET_DIR='/mnt'
 export ENC_KEY_PATH="${TARGET_DIR}/enc.key"
 export COUNTRY='CH'
 export MIRRORLIST="https://www.archlinux.org/mirrorlist/?country=${COUNTRY}&protocol=http&protocol=https&ip_version=4&use_mirror_status=on"
-export IFACE_PROD="eth0"
-export IFACE_SERVICE="eth1"
+export IFACE_SERVICE="eth0"
+export IFACE_PROD="eth1"
 
 eval "`/usr/bin/curl -L v-u.cc/partition_drive`"
 eval "`/usr/bin/curl -L v-u.cc/prepare_base_system`"
