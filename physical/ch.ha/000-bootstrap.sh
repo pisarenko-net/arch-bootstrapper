@@ -2,7 +2,11 @@
 
 # run and execute after dropping into arch installer: $ curl -L v-u.cc/ch_ha | sh
 
-export DISK='/dev/nvme0n1'
+if [ -e '/dev/nvme0n1' ]; then
+	export DISK='/dev/nvme0n1'
+else
+	export DISK='/dev/sda'
+fi
 
 export FQDN='ch.ha.xama'
 export LUSER='sergey'
