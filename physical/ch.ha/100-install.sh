@@ -11,10 +11,18 @@ export HA_NIC_MAC_PROD="722BAC12F8D6"
 export HA_NIC_MAC_INSTALL="722BAC12F8D7"
 export ARCH_MIRROR="https://pkg.adfinis.com"  # used to fetch latest arch image
 
+# latest arch image is going to be written here monthly
 if [ -e '/dev/nvme0n1' ]; then
-	export ARCH_USB_THUMB="/dev/sda"  # latest arch image is going to be written here monthly
+	export ARCH_USB_THUMB="/dev/sda"
 else
 	export ARCH_USB_THUMB="/dev/sdb"
+fi
+
+# mount /boot to correctly build virtualbox
+if [ -e '/dev/nvme0n1' ]; then
+	/usr/bin/mount /dev/nvme0n1p2 /boot
+else
+	/usr/bin/mount /dev/sda2 /boot
 fi
 
 export AS="/usr/bin/sudo -u ${LUSER}"
