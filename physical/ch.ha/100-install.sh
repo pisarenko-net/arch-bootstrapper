@@ -25,6 +25,13 @@ else
 	/usr/bin/mount /dev/sda2 /boot
 fi
 
+# determine amount of RAM for running HomeAssistant VM
+TOTAL_MEMORY_KB=$(grep MemAvailable /proc/meminfo | awk '{print $2}')
+export HA_VM_MEMORY=$(awk -v kb="${TOTAL_MEMORY_KB}" 'BEGIN {printf("%d", kb / 1024 * 0.75)}')
+
+# determine number of cores available
+export HA_VM_CORES=$(nproc)
+
 export AS="/usr/bin/sudo -u ${LUSER}"
 
 if [ ! -f private.key ]; then
@@ -84,7 +91,7 @@ $AS /usr/bin/VBoxManage storagectl HA-1 --name "SATA Controller" --add sata --bo
 $AS /usr/bin/VBoxManage storageattach HA-1 --storagectl "SATA Controller" --port 0 --device 0 --type hdd --medium *vdi
 $AS /usr/bin/VBoxManage modifyvm HA-1 --boot1 disk --boot2 none --boot3 none --boot4 none
 $AS /usr/bin/VBoxManage modifyvm HA-1 --firmware efi
-$AS /usr/bin/VBoxManage modifyvm HA-1 --memory 12288 --cpus 8
+$AS /usr/bin/VBoxManage modifyvm HA-1 --memory $HA_VM_MEMORY --cpus $HA_VM_CORES
 $AS /usr/bin/VBoxManage modifyvm HA-1 --usbehci on
 $AS /usr/bin/VBoxManage modifyvm HA-1 --usbxhci on
 $AS /usr/bin/VBoxManage usbfilter add 0 --target HA-1 --name zigbee --vendorid 10c4
