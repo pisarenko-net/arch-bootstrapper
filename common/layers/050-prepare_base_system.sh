@@ -2,7 +2,7 @@
 
 # Prepare for base installation. 
 
-# run and execute from configuration scripts (not to be invoked directly): $ curl -L t.ly/xama/prepare_base_system | sh
+# run and execute from configuration scripts (not to be invoked directly): $ curl -L v-u.cc/prepare_base_system | sh
 
 echo "==> Setting local mirror"
 /usr/bin/curl -s -L "$MIRRORLIST" |  sed 's/^#Server/Server/' > /etc/pacman.d/mirrorlist

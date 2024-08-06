@@ -2,7 +2,7 @@
 
 # Update last install date in repository README.
 
-# run and execute from configuration scripts (not to be invoked directly): $ curl -L t.ly/xama/report | sh
+# run and execute from configuration scripts (not to be invoked directly): $ curl -L v-u.cc/report | sh
 
 echo '==> Updating Last install date in the repo'
 cd /home/${LUSER}

@@ -2,7 +2,7 @@
 
 # Partition system drive for Arch Linux installation on a physical host with encryption.
 
-# run and execute from configuration scripts (not to be invoked directly): $ curl -L t.ly/xama/partition_drive | sh
+# run and execute from configuration scripts (not to be invoked directly): $ curl -L v-u.cc/partition_drive | sh
 
 echo "==> Create GPT partition table on ${DISK}"
 /usr/bin/sgdisk -og ${DISK}

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# run from bootstrapped machine: $ curl -L t.ly/xama/install_ch_ha | sh
+# run from bootstrapped machine: $ curl -L v-u.cc/install_ch_ha | sh
 
 export LUSER="sergey"
 export DOMAIN="pisarenko.net"
@@ -21,7 +21,7 @@ fi
 echo "==> Importing GPG key for decrypting private configuration files"
 cat private.key | $AS /usr/bin/gpg --import
 
-eval "`/usr/bin/curl -L t.ly/xama/prepare_main_install`"
+eval "`/usr/bin/curl -L v-u.cc/prepare_main_install`"
 
 echo "==> Downloading configuration files and unlocking private configuration files"
 $AS /usr/bin/git clone https://github.com/pisarenko-net/arch-bootstrapper.git /tmp/scripts-repo
@@ -34,7 +34,7 @@ $AS /usr/bin/cp -R /tmp/scripts-repo/common/private /tmp/private
 $AS /usr/bin/cp -R /tmp/scripts-repo/physical/ch.ha/private/* /tmp/private/
 $AS /usr/bin/rm /tmp/private/*secret
 
-eval "`/usr/bin/curl -L t.ly/xama/install_cli`"
+eval "`/usr/bin/curl -L v-u.cc/install_cli`"
 
 echo '==> Installing cron and auto Arch download'
 /usr/bin/cp /tmp/apps/download_latest_arch /usr/local/bin/
@@ -116,7 +116,7 @@ $AS /usr/bin/gpg --batch --yes --delete-secret-keys 6E77A188BB74BDE4A259A52DB320
 /usr/bin/rm -rf /tmp/private
 /usr/bin/rm -rf /root/private.key
 
-eval "`/usr/bin/curl -L t.ly/xama/report`"
+eval "`/usr/bin/curl -L v-u.cc/report`"
 
 echo '==> Install complete!'
 /usr/bin/sleep 10

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# run and execute after dropping into arch installer: $ curl -L t.ly/xama/ch_ha | sh
+# run and execute after dropping into arch installer: $ curl -L v-u.cc/ch_ha | sh
 
 export DISK='/dev/nvme0n1'
 
@@ -22,11 +22,11 @@ export MIRRORLIST="https://www.archlinux.org/mirrorlist/?country=${COUNTRY}&prot
 export IFACE_PROD="eth0"
 export IFACE_SERVICE="eth1"
 
-eval "`/usr/bin/curl -L t.ly/xama/partition_drive`"
-eval "`/usr/bin/curl -L t.ly/xama/prepare_base_system`"
-eval "`/usr/bin/curl -L t.ly/xama/prepare_encryption`"
-eval "`/usr/bin/curl -L t.ly/xama/install_base_system`"
-eval "`/usr/bin/curl -L t.ly/xama/finalize_base_system`"
+eval "`/usr/bin/curl -L v-u.cc/partition_drive`"
+eval "`/usr/bin/curl -L v-u.cc/prepare_base_system`"
+eval "`/usr/bin/curl -L v-u.cc/prepare_encryption`"
+eval "`/usr/bin/curl -L v-u.cc/install_base_system`"
+eval "`/usr/bin/curl -L v-u.cc/finalize_base_system`"
 
 echo '==> Enabling production NIC'
 /usr/bin/cat <<-EOF > "${TARGET_DIR}/etc/netctl/prod-lan"
@@ -44,7 +44,7 @@ EOF
 /usr/bin/arch-chroot ${TARGET_DIR} /usr/bin/netctl enable service-lan
 
 echo '==> Prepopulating shell history'
-echo 'curl -L t.ly/xama/install_ch_ha | sh' >> "${TARGET_DIR}/root/.bash_history"
+echo 'curl -L v-u.cc/install_ch_ha | sh' >> "${TARGET_DIR}/root/.bash_history"
 echo 'vi private.key' >> "${TARGET_DIR}/root/.bash_history"
 
 echo '==> Install complete!'

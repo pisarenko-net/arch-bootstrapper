@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# run from bootstrapped machine: $ curl -L t.ly/xama/install_ch_router | sh
+# run from bootstrapped machine: $ curl -L v-u.cc/install_ch_router | sh
 
 export LUSER="sergey"
 export DOMAIN="pisarenko.net"
@@ -20,7 +20,7 @@ fi
 echo "==> Importing GPG key for decrypting private configuration files"
 cat private.key | $AS /usr/bin/gpg --import
 
-eval "`/usr/bin/curl -L t.ly/xama/prepare_main_install`"
+eval "`/usr/bin/curl -L v-u.cc/prepare_main_install`"
 
 echo "==> Downloading configuration files and unlocking private configuration files"
 $AS /usr/bin/git clone https://github.com/pisarenko-net/arch-bootstrapper.git /tmp/scripts-repo
@@ -33,7 +33,7 @@ $AS /usr/bin/cp -R /tmp/scripts-repo/common/private /tmp/private
 $AS /usr/bin/cp -R /tmp/scripts-repo/physical/ch.router/private/* /tmp/private/
 $AS /usr/bin/rm /tmp/private/*secret
 
-eval "`/usr/bin/curl -L t.ly/xama/install_cli`"
+eval "`/usr/bin/curl -L v-u.cc/install_cli`"
 
 echo '==> Enabling better power management'
 /usr/bin/pacman -S --noconfirm tlp
@@ -153,7 +153,7 @@ echo '==> Enable networks'
 /usr/bin/netctl enable guest_vlan
 /usr/bin/netctl enable install_vlan
 
-eval "`/usr/bin/curl -L t.ly/xama/report`"
+eval "`/usr/bin/curl -L v-u.cc/report`"
 
 echo '==> Enable iptables'
 /usr/bin/cp /tmp/private/sysctl_ip_forward /etc/sysctl.d/30-ip_forward.conf

@@ -2,7 +2,7 @@
 
 # Prepare the base installation for encrypted root partition.
 
-# run and execute from configuration scripts (not to be invoked directly): $ curl -L t.ly/xama/prepare_encryption | sh
+# run and execute from configuration scripts (not to be invoked directly): $ curl -L v-u.cc/prepare_encryption | sh
 
 echo '==> Altering default GRUB configuration (for encryption)'
 /usr/bin/sed -i "s/GRUB_CMDLINE_LINUX_DEFAULT=.*/GRUB_CMDLINE_LINUX_DEFAULT=\"quiet rd.udev.log-priority=3 cryptdevice=UUID=$(blkid ${ROOT_PARTITION} -s UUID -o value):cryptlvm\"/" "${TARGET_DIR}/etc/default/grub"

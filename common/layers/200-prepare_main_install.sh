@@ -2,7 +2,7 @@
 
 # Prepare for main installation.
 
-# run and execute from configuration scripts (not to be invoked directly): $ curl -L t.ly/xama/prepare_main_install | sh
+# run and execute from configuration scripts (not to be invoked directly): $ curl -L v-u.cc/prepare_main_install | sh
 
 # install git-secret
 cd /home/${LUSER}

@@ -23,11 +23,11 @@ export MIRRORLIST="https://www.archlinux.org/mirrorlist/?country=${COUNTRY}&prot
 export LAN_IFACE="eth1"
 export INSTALL_IFACE="eth2"
 
-eval "`/usr/bin/curl -L t.ly/xama/partition_drive`"
-eval "`/usr/bin/curl -L t.ly/xama/prepare_base_system`"
-eval "`/usr/bin/curl -L t.ly/xama/prepare_encryption`"
-eval "`/usr/bin/curl -L t.ly/xama/install_base_system`"
-eval "`/usr/bin/curl -L t.ly/xama/finalize_base_system`"
+eval "`/usr/bin/curl -L v-u.cc/partition_drive`"
+eval "`/usr/bin/curl -L v-u.cc/prepare_base_system`"
+eval "`/usr/bin/curl -L v-u.cc/prepare_encryption`"
+eval "`/usr/bin/curl -L v-u.cc/install_base_system`"
+eval "`/usr/bin/curl -L v-u.cc/finalize_base_system`"
 
 echo '==> Configuring network using service NIC'
 /usr/bin/cat <<-EOF > "${TARGET_DIR}/etc/netctl/install-nic"
@@ -50,7 +50,7 @@ EOF
 /usr/bin/arch-chroot ${TARGET_DIR} /usr/bin/netctl enable trusted_lan
 
 echo '==> Prepopulating shell history'
-echo 'curl -L t.ly/xama/install_ch_router | sh' >> "${TARGET_DIR}/root/.bash_history"
+echo 'curl -L v-u.cc/install_ch_router | sh' >> "${TARGET_DIR}/root/.bash_history"
 echo 'vi private.key' >> "${TARGET_DIR}/root/.bash_history"
 
 echo '==> Install complete!'

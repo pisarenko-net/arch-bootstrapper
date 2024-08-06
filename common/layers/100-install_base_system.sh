@@ -2,7 +2,7 @@
 
 # Install base Arch Linux system. Networking configuration is up to each machine definition.
 
-# run and execute from configuration scripts (not to be invoked directly): $ curl -L t.ly/xama/install_base_system | sh
+# run and execute from configuration scripts (not to be invoked directly): $ curl -L v-u.cc/install_base_system | sh
 
 PASSWORD='test'
 ROOT_PASSWORD=`/usr/bin/openssl rand -base64 32`

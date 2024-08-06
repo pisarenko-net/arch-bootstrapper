@@ -20,12 +20,12 @@ ch.router Last Installed **2023-11-27**
 
 Bootstrap (from Arch installer):
 ```
-$ curl -L t.ly/xama/ch_router | sh
+$ curl -L v-u.cc/ch_router | sh
 ```
 
 Install (requires: config decryption key in `private.key`, root):
 ```
-# curl -L t.ly/xama/install_ch_router | sh
+# curl -L v-u.cc/install_ch_router | sh
 ```
 
 ### ch.nuc
@@ -48,12 +48,12 @@ ch.ha Last Installed **2023-11-28**
 
 Bootstrap (from Arch installer):
 ```
-$ curl -L t.ly/xama/ch_ha | sh
+$ curl -L v-u.cc/ch_ha | sh
 ```
 
 Install (requires: config decryption key in `private.key`, root):
 ```
-# curl -L t.ly/xama/install_ch_ha | sh
+# curl -L v-u.cc/install_ch_ha | sh
 ```
 
 ### ch.cddev (CD Player dev environment)

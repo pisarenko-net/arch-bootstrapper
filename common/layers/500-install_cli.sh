@@ -2,7 +2,7 @@
 
 # Install base CLI layer: tools and configs to be present on each machine.
 
-# run and execute from bootstrapped script (not to be invoked directly): $ curl -L t.ly/xama/install_cli | sh
+# run and execute from bootstrapped script (not to be invoked directly): $ curl -L v-u.cc/install_cli | sh
 
 echo "==> Enable time sync"
 /usr/bin/timedatectl set-ntp true
