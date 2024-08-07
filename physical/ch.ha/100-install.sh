@@ -131,6 +131,11 @@ echo '==> Configuring reverse proxy'
 
 echo '==> Configuring Home Assistant with last backup'
 /usr/bin/pacman -S --noconfirm python python-requests
+/usr/bin/mkdir /tmp/restore
+cd /tmp/restore
+/usr/bin/cp /tmp/private/home-assistant-backup.tar /tmp/restore/
+/usr/bin/cp /tmp/configs/restore_ha.py /tmp/restore/
+/usr/bin/python restore_ha.py
 
 #echo '==> Cleaning up'
 #$AS /usr/bin/gpg --batch --yes --delete-secret-keys 6E77A188BB74BDE4A259A52DB320A1C85AFACA96
