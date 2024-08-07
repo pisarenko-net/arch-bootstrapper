@@ -137,16 +137,16 @@ cd /tmp/restore
 /usr/bin/cp /tmp/configs/restore_ha.py /tmp/restore/
 /usr/bin/python restore_ha.py
 
-#echo '==> Cleaning up'
-#$AS /usr/bin/gpg --batch --yes --delete-secret-keys 6E77A188BB74BDE4A259A52DB320A1C85AFACA96
-#/usr/bin/rm -rf /tmp/scripts-repo
-#/usr/bin/rm -rf /tmp/apps
-#/usr/bin/rm -rf /tmp/configs
-#/usr/bin/rm -rf /tmp/private
-#/usr/bin/rm -rf /root/private.key
+echo '==> Cleaning up'
+$AS /usr/bin/gpg --batch --yes --delete-secret-keys 6E77A188BB74BDE4A259A52DB320A1C85AFACA96
+/usr/bin/rm -rf /tmp/scripts-repo
+/usr/bin/rm -rf /tmp/apps
+/usr/bin/rm -rf /tmp/configs
+/usr/bin/rm -rf /tmp/private
+/usr/bin/rm -rf /root/private.key
 
-#eval "`/usr/bin/curl -L v-u.cc/report`"
+eval "`/usr/bin/curl -L v-u.cc/report`"
 
-#echo '==> Install complete!'
-#/usr/bin/sleep 10
-#/usr/bin/reboot
+echo '==> Install complete!'
+/usr/bin/sleep 10
+/usr/bin/reboot

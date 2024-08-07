@@ -61,7 +61,7 @@ def wait_for_ha_restore(url, timeout=HA_RESTORE_TIMEOUT_MIN):
         except RequestException as e:
             print("==> Request to Home Assistant failed, retrying. Error:", str(e))
 
-        print("==> Waiting for Home Assistant to initialize")
+        print("==> Waiting for Home Assistant to prepare")
         time.sleep(RETRY_TIMEOUT_SEC)
 
     else:
@@ -84,6 +84,8 @@ def main():
 
     restore_url = "http://install.home-assistant.xama/api/hassio/backups/%s/restore/full" % upload_slug
     requests.post(restore_url)
+
+    print("==> Started full restore")
 
     wait_for_ha_restore(url)
 
