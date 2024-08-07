@@ -127,17 +127,18 @@ echo '==> Configuring reverse proxy'
 /usr/bin/awk '/\[Unit\]/{print;print "StartLimitInterval=200";print "StartLimitBurst=5";next}1' /lib/systemd/system/nginx.service | awk '/\[Service\]/{print;print "Restart=always";print "RestartSec=30";next}1' > /tmp/nginx.service
 /usr/bin/cp /tmp/nginx.service /lib/systemd/system/nginx.service
 /usr/bin/systemctl enable nginx
+/usr/bin/systemctl start nginx
 
-echo '==> Cleaning up'
-$AS /usr/bin/gpg --batch --yes --delete-secret-keys 6E77A188BB74BDE4A259A52DB320A1C85AFACA96
-/usr/bin/rm -rf /tmp/scripts-repo
-/usr/bin/rm -rf /tmp/apps
-/usr/bin/rm -rf /tmp/configs
-/usr/bin/rm -rf /tmp/private
-/usr/bin/rm -rf /root/private.key
+#echo '==> Cleaning up'
+#$AS /usr/bin/gpg --batch --yes --delete-secret-keys 6E77A188BB74BDE4A259A52DB320A1C85AFACA96
+#/usr/bin/rm -rf /tmp/scripts-repo
+#/usr/bin/rm -rf /tmp/apps
+#/usr/bin/rm -rf /tmp/configs
+#/usr/bin/rm -rf /tmp/private
+#/usr/bin/rm -rf /root/private.key
 
-eval "`/usr/bin/curl -L v-u.cc/report`"
+#eval "`/usr/bin/curl -L v-u.cc/report`"
 
-echo '==> Install complete!'
-/usr/bin/sleep 10
-/usr/bin/reboot
+#echo '==> Install complete!'
+#/usr/bin/sleep 10
+#/usr/bin/reboot
