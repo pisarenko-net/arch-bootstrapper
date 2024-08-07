@@ -129,6 +129,9 @@ echo '==> Configuring reverse proxy'
 /usr/bin/systemctl enable nginx
 /usr/bin/systemctl start nginx
 
+echo '==> Configuring Home Assistant with last backup'
+/usr/bin/pacman -S --noconfirm python python-requests
+
 #echo '==> Cleaning up'
 #$AS /usr/bin/gpg --batch --yes --delete-secret-keys 6E77A188BB74BDE4A259A52DB320A1C85AFACA96
 #/usr/bin/rm -rf /tmp/scripts-repo
