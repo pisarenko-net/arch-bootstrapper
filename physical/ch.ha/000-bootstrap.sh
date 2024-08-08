@@ -37,7 +37,7 @@ eval "`/usr/bin/curl -L v-u.cc/finalize_base_system`"
 
 echo '==> Setting persistent network iface names'
 /usr/bin/cat <<-EOF > "${TARGET_DIR}/etc/udev/rules.d/10-network-iface-names.rules"
-SUBSYSTEM=="net", ACTION=="add", ATTR{address}=="34:29:8f:60:06:48", NAME="main"
+SUBSYSTEM=="net", ACTION=="add", ATTR{address}=="34:29:8f:60:06:47", NAME="main"
 SUBSYSTEM=="net", ACTION=="add", ATTR{address}=="98:fc:84:13:0c:42", NAME="main"
 SUBSYSTEM=="net", ACTION=="add", ATTR{address}=="94:c6:91:a7:a1:34", NAME="service"
 SUBSYSTEM=="net", ACTION=="add", ATTR{address}=="00:e0:4c:2f:5c:ab", NAME="service"
