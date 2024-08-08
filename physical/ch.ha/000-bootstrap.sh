@@ -26,8 +26,8 @@ export TARGET_DIR='/mnt'
 export ENC_KEY_PATH="${TARGET_DIR}/enc.key"
 export COUNTRY='CH'
 export MIRRORLIST="https://www.archlinux.org/mirrorlist/?country=${COUNTRY}&protocol=http&protocol=https&ip_version=4&use_mirror_status=on"
-export IFACE_SERVICE="eth0"
-export IFACE_PROD="eth1"
+export IFACE_SERVICE="service"
+export IFACE_PROD="main"
 
 eval "`/usr/bin/curl -L v-u.cc/partition_drive`"
 eval "`/usr/bin/curl -L v-u.cc/prepare_base_system`"
@@ -35,18 +35,28 @@ eval "`/usr/bin/curl -L v-u.cc/prepare_encryption`"
 eval "`/usr/bin/curl -L v-u.cc/install_base_system`"
 eval "`/usr/bin/curl -L v-u.cc/finalize_base_system`"
 
+echo '==> Setting persistent network iface names'
+/usr/bin/cat <<-EOF > "${TARGET_DIR}/etc/udev/rules.d/10-network-iface-names.rules"
+SUBSYSTEM=="net", ACTION=="add", ATTR{address}=="34:29:8f:60:06:48", NAME="main"
+SUBSYSTEM=="net", ACTION=="add", ATTR{address}=="98:fc:84:13:0c:42", NAME="main"
+SUBSYSTEM=="net", ACTION=="add", ATTR{address}=="94:c6:91:a7:a1:34", NAME="service"
+SUBSYSTEM=="net", ACTION=="add", ATTR{address}=="00:e0:4c:2f:5c:ab", NAME="service"
+EOF
+
 echo '==> Enabling production NIC'
 /usr/bin/cat <<-EOF > "${TARGET_DIR}/etc/netctl/prod-lan"
 Interface=${IFACE_PROD}
 Connection=ethernet
 IP=dhcp
 EOF
+
 echo '==> Enabling service NIC'
 /usr/bin/cat <<-EOF > "${TARGET_DIR}/etc/netctl/service-lan"
 Interface=${IFACE_SERVICE}
 Connection=ethernet
 IP=dhcp
 EOF
+
 /usr/bin/arch-chroot ${TARGET_DIR} /usr/bin/netctl enable prod-lan
 /usr/bin/arch-chroot ${TARGET_DIR} /usr/bin/netctl enable service-lan
 
