@@ -111,6 +111,8 @@ def main():
 
     wait_for_ha_restore(url)
 
+    print("==> Complete. Giving Home Assistant 10 minutes before final reboot, just in case.")
+    time.sleep(10 * 60)
 
 if __name__ == "__main__":
     main()
