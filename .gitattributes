@@ -1,0 +1,1 @@
+physical/ch.ha/private/home-assistant-backup.tar.secret filter=lfs diff=lfs merge=lfs -text
