@@ -44,6 +44,7 @@ cat private.key | $AS /usr/bin/gpg --import
 eval "`/usr/bin/curl -L v-u.cc/prepare_main_install`"
 
 echo "==> Downloading configuration files and unlocking private configuration files"
+/usr/bin/git lfs install
 $AS /usr/bin/git lfs install
 $AS /usr/bin/git clone https://github.com/pisarenko-net/arch-bootstrapper.git /tmp/scripts-repo
 cd /tmp/scripts-repo
