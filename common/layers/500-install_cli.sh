@@ -11,7 +11,7 @@ echo "==> Refreshing pacman"
 /usr/bin/pacman -Syu --noconfirm
 
 echo "==> Installing tools"
-/usr/bin/pacman -S --noconfirm htop tcpdump parted netcat hwinfo zsh mc zip unrar linux-headers lsof dnsutils git-lfs
+/usr/bin/pacman -S --noconfirm htop tcpdump parted netcat hwinfo zsh mc zip unrar linux-headers lsof dnsutils 
 
 echo "==> Setting default text editor"
 /usr/bin/ln -sf /usr/bin/nvim /usr/bin/vi
