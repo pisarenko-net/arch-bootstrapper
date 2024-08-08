@@ -77,9 +77,9 @@ def retry_restore_until_success(url, timeout=HA_START_RESTORE_TIMEOUT_MIN):
 
     while datetime.now() < end_time:
         try:
-            response = requests.get(url, timeout=REQUEST_TIMEOUT_SEC)
+            response = requests.post(url, timeout=REQUEST_TIMEOUT_SEC)
             print("  received code %s" % response.status_code)
-            if response.status_code == 200:
+            if response.status_code == 200 or response.status_code == 502:
                 break
         except RequestException as e:
             print("==> Request to Home Assistant failed, retrying. Error:", str(e))
