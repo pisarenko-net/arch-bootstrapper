@@ -44,7 +44,7 @@ Install (requires: config decryption key in `private.key`, root):
 
 ### ch.ha (Home Assistant / Smart Home)
 
-ch.ha Last Installed **2024-08-08**
+ch.ha Last Installed **2024-08-09**
 
 Bootstrap (from Arch installer):
 ```
